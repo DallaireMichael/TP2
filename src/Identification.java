@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-/*
+/**
  * Tous les utilisateurs devront passé par 
  * Identification. Plusieurs classes hériteront 
  * de cette classe
