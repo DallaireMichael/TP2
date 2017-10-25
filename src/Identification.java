@@ -99,7 +99,7 @@ public class Identification implements Serializable{
 	 * Clone Identification actuelle
 	 * @return Identification
 	 */
-	public Object clone(){
+	public Identification clone(){
 		return new Identification(this.nom, this.prenom);
 	}
 	
