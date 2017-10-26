@@ -90,6 +90,9 @@ public class Patient implements Serializable {
 	/**
 	 * Change la valeur du numéro d'assurance social d'un patient.
 	 * 
+	 * @param numeroAssuranceSocial
+	 * 		  Un entier qui représente le numéro d'assurance social d'un patient.
+	 * 
 	 * @return void.
 	 */
 	public void setNumeroAssuranceSocial(int numeroAssuranceSocial) {
@@ -100,6 +103,9 @@ public class Patient implements Serializable {
 	
 	/**
 	 * Change la valeur de la référence de l'identifiant d'un patient.
+	 * 
+	 * @param id
+	 * 		  La classe Identification.
 	 * 
 	 * @return void.
 	 */
@@ -120,12 +126,16 @@ public class Patient implements Serializable {
 	 */
 	public String toString() {
     	
-    	return "\nNom du patient: " + id.toString()+ "\nNuméro d'assurance social : " + this.getNumeroAssuranceSocial();
+    	return "\nNom du patient : " + id.toString() +
+    		   "\nNuméro d'assurance social : " + this.getNumeroAssuranceSocial();
     
     }
 	
 	/**
 	 * Retourne le résultat de la comparaison de deux patients.
+	 * 
+     * @param patientCopie
+	 * 		  La classe patient qu'on veut comparer les valeurs des attributs.
 	 * 
 	 * @return boolean.
 	 */

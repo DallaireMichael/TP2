@@ -91,6 +91,9 @@ public class Infirmier implements Serializable {
 	/**
 	 * Change la valeur du booléen de la disponibilité d'un infirmier.
 	 * 
+	 * @param disponible
+	 * 		  Un booléen pour connaître la disponibilité de l'infirmier.
+	 * 
 	 * @return void.
 	 */
 	public void setDisponibilite(boolean disponible) {
@@ -101,6 +104,9 @@ public class Infirmier implements Serializable {
 	
 	/**
 	 * Change la valeur de la référence de l'identifiant d'un l'infirmier.
+	 * 
+	 * @param id
+	 * 		  La classe Identification.
 	 * 
 	 * @return void.
 	 */
@@ -121,12 +127,15 @@ public class Infirmier implements Serializable {
 	 */
 	public String toString() {
     	
-    	return "\nNom de l'infirmier: " + id.toString()+ "\nDisponible : " + this.getDisponibilite();
-    
+    	return "\nNom de l'infirmier : " + id.toString() + "\nDisponible : " + this.getDisponibilite();
+    	
     }
 	
 	/**
 	 * Retourne le résultat de la comparaison de deux infirmiers.
+	 * 
+	 * @param infirmierCopie
+	 * 		  La classe Infirmier qu'on veut comparer les valeurs des attributs.
 	 * 
 	 * @return boolean.
 	 */
