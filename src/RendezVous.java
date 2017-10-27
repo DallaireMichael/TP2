@@ -140,9 +140,9 @@ public class RendezVous implements Serializable {
 	 */
 	public String toString() {
     	
-    	return "\nRendev-vous Patient : " + patient.toString() +
-    		   "\nRendev-vous Docteur : " + docteur.toString() +
-    		   "\nRendev-vous Infirmier : " + infirmier.toString();
+    	return "\nRendez-vous Patient : " + patient.toString() +
+    		   "\nRendez-vous Docteur : " + docteur.toString() +
+    		   "\nRendez-vous Infirmier : " + infirmier.toString();
     
     }
 	
