@@ -41,7 +41,7 @@ public class RendezVous implements Serializable {
 		}
 		
 		this.patient = patient.clone();
-		this.docteur = docteur.clone();
+		this.docteur = docteur.clone(docteur);
 		this.infirmier = infirmier.clone();
 		
 	}
