@@ -87,4 +87,40 @@ public class Docteur implements Serializable{
 	public Identification getId(){
 		return id;
 	}
+	
+	/**
+	 * Retourne son departement
+	 * @return departement
+	 */
+	public int getDepartement(){
+		return departement;
+	}
+	
+	/**
+	 * Vérifie si les deux docteurs sont exactement pareil
+	 * @param doc
+	 * @return boolean
+	 */
+	public boolean equals(Docteur doc){
+		return this.id.equals(doc.id) && 
+				departement == doc.departement;
+	}
+	
+	/**
+	 * Retourne une nouvelle référence de Docteur
+	 * avec les même valeurs que le Docteur présent
+	 * @param doc
+	 * @return Docteur
+	 */
+	public Docteur clone(Docteur doc){
+		return new Docteur(doc.id.clone(),departement);
+	}
+	
+	/**
+	 * Retourne tous les attributs en chaîne
+	 * @return String
+	 */
+	public String toString(){
+		return id+" "+departement ;
+	}
 }

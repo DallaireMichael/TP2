@@ -90,8 +90,30 @@ public class Identification implements Serializable{
 		//Arrête la comparaison si this est la même référence que id
 		if(this == id) return true;
 		
-		//retourne false dans tous les autres cas
-		return false;
+		//Test si l'un des nom est null
+		if(nom == null || id.nom == null) {
+			
+			return false;
+		
+		//Compare les deux nom et retourn false si non égal
+		}else if(nom != id.nom) {
+			
+			return false;
+		
+		//Test si l'un des prenom est null
+		}else if(prenom == null || id.prenom == null) {
+			
+			return false;
+			
+		//Compare les deux prenom et retourn false si non égal	
+		} else if(prenom != id.prenom) {
+			
+			return false;
+			
+		}
+		
+		//retourne true dans tous les autres cas
+		return true;
 		
 	}
 	
