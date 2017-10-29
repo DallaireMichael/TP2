@@ -1,6 +1,8 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Classe représentant l'horaire d'une journée de la clinique. Elle contient deux attributs
@@ -25,12 +27,20 @@ public class PlageHoraire implements Serializable {
 	 * Le constructeur reçoit une date et l'assigne à la plage horaire,
 	 * et la liste des rendez-vous est instanciée, mais est vide.
 	 * 
-	 * @param date
-	 * 		  Reçoit une Date.
+	 * @param annee
+	 * 		  Un entier qui représente l'année, on doit enlever 1900 pour avoir la bonne anéee. 
+	 * @param mois
+	 * 		  Un entier qui représente le mois, on doit soustraire 1, car les mois sont entre 0 et 11.
+	 * @param jour
+	 * 		  Un entier qui représente le jour pour la nouvelle date. 
+	 * @param heure
+	 * 		  Un entier qui représente heure de la nouvelle date.
+	 * @param minute
+	 * 		  Un entier qui représente les minutes d'une nouvelle date.
 	 */
-	public PlageHoraire(Date date) {
+	public PlageHoraire(int annee, int mois, int jour, int heure, int minute) {
 		
-		this.setDate(date);
+		this.setDate(annee, mois, jour, heure, minute);
 		this.listeRendezVous = new ArrayList<RendezVous>();
 		
 	}
@@ -66,16 +76,30 @@ public class PlageHoraire implements Serializable {
      * **************************/
 	
 	/**
-	 * Change la valeur de la date avec celle qui est passé en paramètre.
+	 * Change les valeurs de la date avec celles qui sont passées en paramètres.
 	 * 
-	 * @param date
-	 * 		  La nouvelle date pour la plage horaire.
+	 * @param annee
+	 * 		  Un entier qui représente l'année, on doit enlever 1900 pour avoir la bonne anéee. 
+	 * @param mois
+	 * 		  Un entier qui représente le mois, on doit soustraire 1, car les mois sont entre 0 et 11.
+	 * @param jour
+	 * 		  Un entier qui représente le jour pour la nouvelle date. 
+	 * @param heure
+	 * 		  Un entier qui représente heure de la nouvelle date.
+	 * @param minute
+	 * 		  Un entier qui représente les minutes d'une nouvelle date.
 	 * 
 	 * @return void.
 	 */
-	public void setDate(Date date) {
+	public void setDate(int annee, int mois, int jour, int heure, int minute) {
 		
-		this.date = date;
+		// On modifie les valeurs de l'année, le mois, le jour,
+		// l'heure et les minutes d'une plage horaire.
+		this.date.setYear(annee - 1900);
+		this.date.setMonth(mois - 1);
+		this.date.setDate(jour);
+		this.date.setHours(heure);
+		this.date.setMinutes(minute);
 		
 	}
 	
