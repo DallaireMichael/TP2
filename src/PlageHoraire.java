@@ -16,7 +16,7 @@ import java.util.GregorianCalendar;
 public class PlageHoraire implements Serializable {
 	
 	// Attributs pour la classe Patient
-	private Date date;
+	private Date date = new Date();
 	private ArrayList<RendezVous> listeRendezVous;
 	
 	/***************************
@@ -146,7 +146,7 @@ public class PlageHoraire implements Serializable {
 		// Boucle qui parcourt toute la liste des rendez-vous.
 		for(int i = 0; i < listeRendezVous.size(); i++) {
 			
-			phrase = listeRendezVous.get(i) + ", "; 
+			phrase += listeRendezVous.get(i).toString() + ", "; 
 			
 		}
     	

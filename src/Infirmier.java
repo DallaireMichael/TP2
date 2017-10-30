@@ -40,8 +40,7 @@ public class Infirmier implements Serializable {
 	 */
 	public Infirmier(Identification id, boolean disponible) {
 		
-		this.id.setNom(id.getNom());
-		this.id.setPrenom(id.getPrenom());
+		this.id = id.clone();
 		this.setDisponibilite(disponible);
 		
 	}
