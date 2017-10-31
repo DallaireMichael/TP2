@@ -8,13 +8,28 @@ public class Test{
 		
 		Calendrier cal = new Calendrier();
 		
-		RendezVous ren = new RendezVous(new Patient(), new Docteur(), new Infirmier());
+		Identification id = new Identification("Dallaire", "Michael");
+		
+		RendezVous ren = new RendezVous(new Patient(id,0), new Docteur(id,0), new Infirmier(id,false));
 		
 		PlageHoraire plage = new PlageHoraire(2017, 5, 2, 14, 15);
 		
+		plage.addRendezVous(ren);
+		
 		cal.ajouterRendezVous(ren, plage.getDate());
 		
-		cal.toString();
+ id = new Identification("Dallaire", "Pouchon");
+		
+		 ren = new RendezVous(new Patient(id,0), new Docteur(id,0), new Infirmier(id,false));
+		
+		plage.addRendezVous(ren);
+		
+		cal.ajouterRendezVous(ren, plage.getDate());
+		
+		Patient patient = new Patient(id,0);
+		
+		System.out.print("\n\nCalendrier: " + cal.toString());
+	
 	}
 	
 	

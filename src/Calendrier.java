@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -93,10 +94,11 @@ public class Calendrier implements Serializable{
 		//Compteur d'éléments passé
 		int i = 1;
 				
-		//Vérifie que l'element present a la même date sinon on passe à un autre élément
-		//Jusqu'à qu'on aie passé tous les éléments
-		while(	i < listeHoraire.getNbElements() &&
-			((PlageHoraire) listeHoraire.getElement()).getDate().compareTo(date) != 0) {
+		//Vérifie que l'element present a la même date sinon on 
+		//passe à un autre élément jusqu'à qu'on aie passé tous les éléments
+		while(i < listeHoraire.getNbElements() &&
+			((PlageHoraire) 
+					listeHoraire.getElement()).getDate().compareTo(date) != 0) {
 					
 			//Élément suivant
 			listeHoraire.setPcSuivant();
@@ -107,7 +109,8 @@ public class Calendrier implements Serializable{
 		
 		//la boucle s'est arrêté au dernier element,
 		//Donc on s'assure que le dernier element est la même date ou non
-		if(((PlageHoraire) listeHoraire.getElement()).getDate().compareTo(date) == 0) {
+		if(((PlageHoraire) 
+				listeHoraire.getElement()).getDate().compareTo(date) == 0) {
 			
 			return listeHoraire.getElement();
 			
@@ -124,15 +127,18 @@ public class Calendrier implements Serializable{
 	 */
 	private void insereNouvellePlageHoraire(RendezVous rendezVous, Date date) {
 		
-		PlageHoraire plage = new PlageHoraire(date.getYear(),date.getMonth(),date.getDay(),
-				date.getHours(),date.getMinutes());
+		PlageHoraire plage = new PlageHoraire(date.getYear(),date.getMonth()
+				,date.getDay(),date.getHours(),date.getMinutes());
 		
 		plage.addRendezVous(rendezVous);
 		listeHoraire.inserer(plage);
 		
 	}
 	
-	
+	/**
+	 * Retourne un chaine de caractère pour 
+	 * tester tous les attributs
+	 */
 	public String toString() {
 		
 		listeHoraire.setPcDebut();
@@ -145,6 +151,8 @@ public class Calendrier implements Serializable{
 		//passe en revue tous les éléments de la liste
 		while(i <= listeHoraire.getNbElements()) {
 			
+			System.out.print(information);
+			
 			information += listeHoraire.getElement().toString() + " \n";
 			
 			//On change la position courante jusqu'au dernier
@@ -154,9 +162,242 @@ public class Calendrier implements Serializable{
 				
 			}
 			
+			i++;
+			
+			listeHoraire.setPcSuivant();
 		}
 		
 		return information;
 		
 	}
+	
+	/**
+	 * Obtient un patient et regarde à  travers toutes les plages horaire
+	 * quel est le prochain rendez-vous de de patient
+	 * @param patient
+	 * @return
+	 */
+	public RendezVous obtenirProchainRendezVousPatient(Patient patient){
+		
+		/*
+		 * STRATÉGIE : placer la position courante au debut de la liste
+		 * Parcourir la liste de plage horaire à l'aide du nombre d'éléments
+		 * parcourir les rendez-vous d'une plage horaire et comparer 
+		 * le patient de chaque rendez-vous au patient reçu en paramètre
+		 *  
+		 */
+		
+		listeHoraire.setPcDebut();
+		
+		int i = 1;
+		
+		//Parcours toutes les plages horaire
+		while(i <= listeHoraire.getNbElements()){
+			
+			//Liste de rendez-vous d'une plage horaire
+			ArrayList<RendezVous> listeRendezVous = 
+					((PlageHoraire) listeHoraire.getElement()).getRendezVous();
+			
+			//Parcours tous les rendez-vous d'une plage horaire
+			for(int j = 0; j < listeRendezVous.size(); j++ ){
+				
+				//Compare le patient d'un rendez vous au patient en paramètre
+				if(patient.equals(listeRendezVous.get(j).getPatient())){
+					
+					return listeRendezVous.get(j);
+					
+				}
+			}
+			
+			i++;
+			listeHoraire.setPcSuivant();
+			
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Obtient un infirmier et regarde à  travers toutes les plages horaire
+	 * quel est le prochain rendez-vous de de infirmier
+	 * @param infirmier
+	 * @return
+	 */
+	public RendezVous obtenirProchainRendezVousInfirmier(Infirmier infirmier){
+		
+		/*
+		 * STRATÉGIE : placer la position courante au debut de la liste
+		 * Parcourir la liste de plage horaire à l'aide du nombre d'éléments
+		 * parcourir les rendez-vous d'une plage horaire et comparer 
+		 * l'infirmier de chaque rendez-vous au infirmier reçu en paramètre
+		 *  
+		 */
+		
+		listeHoraire.setPcDebut();
+		
+		int i = 1;
+		
+		//Parcours toutes les plages horaire
+		while(i <= listeHoraire.getNbElements()){
+			
+			//Liste de rendez-vous d'une plage horaire
+			ArrayList<RendezVous> listeRendezVous = 
+					((PlageHoraire) listeHoraire.getElement()).getRendezVous();
+			
+			//Parcours tous les rendez-vous d'une plage horaire
+			for(int j = 0; j < listeRendezVous.size(); j++ ){
+				
+				//Compare l'infirmier d'un rendez vous au infirmier en paramètre
+				if(infirmier.equals(listeRendezVous.get(j).getInfirmier())){
+					
+					return listeRendezVous.get(j);
+					
+				}
+			}
+			
+			i++;
+			listeHoraire.setPcSuivant();
+			
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Obtient un infirmier et regarde à  travers toutes les plages horaire
+	 * quel est le prochain rendez-vous de de infirmier
+	 * @param infirmier
+	 * @return
+	 */
+	public RendezVous obtenirProchainRendezVousDocteur(Docteur docteur){
+		
+		/*
+		 * STRATÉGIE : placer la position courante au debut de la liste
+		 * Parcourir la liste de plage horaire à l'aide du nombre d'éléments
+		 * parcourir les rendez-vous d'une plage horaire et comparer 
+		 * le docteur de chaque rendez-vous au docteur reçu en paramètre
+		 *  
+		 */
+		
+		listeHoraire.setPcDebut();
+		
+		int i = 1;
+		
+		//Parcours toutes les plages horaire
+		while(i <= listeHoraire.getNbElements()){
+			
+			//Liste de rendez-vous d'une plage horaire
+			ArrayList<RendezVous> listeRendezVous = 
+					((PlageHoraire) listeHoraire.getElement()).getRendezVous();
+			
+			//Parcours tous les rendez-vous d'une plage horaire
+			for(int j = 0; j < listeRendezVous.size(); j++ ){
+				
+				//Compare le docteur d'un rendez vous au docteur en paramètre
+				if(docteur.equals(listeRendezVous.get(j).getDocteur())){
+					
+					return listeRendezVous.get(j);
+					
+				}
+			}
+			
+			i++;
+			listeHoraire.setPcSuivant();
+			
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Retourne la première PlageHoraire de la liste et la supprime de la liste
+	 * @return
+	 */
+	public PlageHoraire obtenirProchainePlageHoraire(){
+		
+		/*
+		 * STRATÉGIE : On place la position courante au début
+		 * On prend le premier élément et appel supprimerPc, pour 
+		 * suprrimer la PlageHoraire cherchée
+		 */
+		
+		//on s'assure que la position courante est au début
+		listeHoraire.setPcDebut();
+		
+		//sauvegarde de la plage qui sera supprimé de la liste
+		PlageHoraire plage = (PlageHoraire) listeHoraire.getElement();
+		
+
+		try {
+			
+			listeHoraire.supprimerPc();
+			
+		} catch (Exception e) {
+			
+			e.getMessage();
+		}
+		
+		return plage;
+		
+	}
+	
+	
+	public boolean annulerRendezVous(RendezVous ren){
+		
+		/*
+		 * STRATÉGIE : Placer position courante au début pour passer
+		 * à travers toutes les plages horaire de la liste
+		 * On parcours donc la liste de plages horaire pour parcourir
+		 * tous les rendez vous
+		 */
+		
+		//on s'assure que la position courante se trouve au début
+		listeHoraire.setPcDebut();
+		
+		//compteur d'élément de liste
+		int i = 1;
+		
+		//parcours toutes les PlagesHoraire
+		while(i <= listeHoraire.getNbElements()){
+			
+			//Liste de rendez-vous d'une plage horaire
+			ArrayList<RendezVous> listeRendezVous = 
+					((PlageHoraire) listeHoraire.getElement()).getRendezVous();
+			
+			//parcours les rendez-vous d'une plage Horaire
+			for(int j = 0; j < listeRendezVous.size(); j++){
+				
+				//Compare le rendez-vous en paramètre à chacun des rendez-vous
+				// de toute les plages horaire
+				if(ren.equals(listeRendezVous.get(j))){
+					
+					listeRendezVous.remove(j);
+					
+					//Vérifie s'il reste aucun rendez-vous dans une plage horaire
+					//éfface la Plage horaire dans ce cas
+					if(listeRendezVous.size() == 0){
+						
+						try {
+							
+							listeHoraire.supprimerPc();
+							
+						} catch (Exception e) {
+							e.getMessage();
+						}	
+					}
+					
+					return true;
+					
+				}	
+			}
+			
+			i++;
+			listeHoraire.setPcSuivant();
+			
+		}
+		
+		return false;
+		
+	}
+	
 }

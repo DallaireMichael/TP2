@@ -121,6 +121,6 @@ public class Docteur implements Serializable{
 	 * @return String
 	 */
 	public String toString(){
-		return id+" "+departement ;
+		return id.toString()+" "+departement ;
 	}
 }

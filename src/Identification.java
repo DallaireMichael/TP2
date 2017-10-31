@@ -21,6 +21,8 @@ public class Identification implements Serializable{
 	public Identification(){
 		nom = "";
 		prenom = "";
+		//System.out.println("TEST " + nom + prenom);
+		
 	}
 	
 	/**
