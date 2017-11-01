@@ -39,7 +39,11 @@ public class Patient implements Serializable {
 	 */
 	public Patient(Identification id, int numeroAssuranceSocial) {
 		
+<<<<<<< HEAD
 		id = id.clone();
+=======
+		this.id = id.clone();
+>>>>>>> afdf5b8ce88d527374013ac3b240009b0a8f07f1
 		this.setNumeroAssuranceSocial(numeroAssuranceSocial);
 		
 	}

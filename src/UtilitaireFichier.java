@@ -13,15 +13,15 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 /**
- * Classe utilitaire pour la récupération et la sauvegarde de la bd
- * dans le travail sur le calendrier de clinique médicale. (voir énoncé tp2 A17 INF111).
+ * Classe utilitaire pour la recuperation et la sauvegarde de la bd
+ * dans le travail sur le calendrier de clinique medicale. (voir enonce tp2 A17 INF111).
  * 
- * @author Pierre Bélisle
+ * @author Pierre Belisle
  * @version (Copyright 2017)
  * 
- * Tout le code a été écrit par l'auteur pour l'École de technologie supérieure
- * de montréal (Éts).  Toute utilisation ou reproduction, en tout ou en partie,
- * doit mentionner l'école et l'auteur.
+ * Tout le code a ete ecrit par l'auteur pour l'École de technologie superieure
+ * de montreal (Éts).  Toute utilisation ou reproduction, en tout ou en partie,
+ * doit mentionner l'ecole et l'auteur.
  *
  */
 public class UtilitaireFichier {
@@ -33,8 +33,8 @@ public class UtilitaireFichier {
 	public static Clinique obtenirClinique(FileInputStream fic){
 
 		/*
-		 * Stratégie : On utilise  un FileInputStream qui permet de lire
-		 * la bd d'un coup, (comme elle a été sauvegardée).
+		 * Strategie : On utilise  un FileInputStream qui permet de lire
+		 * la bd d'un coup, (comme elle a ete sauvegardee).
 		 */
 		Clinique clinique = new Clinique();
 
@@ -50,7 +50,7 @@ public class UtilitaireFichier {
 
 		}
 
-		// Si le fichier n'existe pas, on s'assure que tout est initialisé.
+		// Si le fichier n'existe pas, on s'assure que tout est initialise.
 		catch(FileNotFoundException e){
 			e.printStackTrace();
 		}
@@ -71,13 +71,13 @@ public class UtilitaireFichier {
 	}
 
 	/**
-	 * Sauvegarde la bd dans le fichier nommé par NOM_FICHIER_BD.
+	 * Sauvegarde la bd dans le fichier nomme par NOM_FICHIER_BD.
 	 *
 	 */
 	public static void sauvegarderClinique(Clinique clinique, String nomFic){
 
 		/*
-		 * Stratégie : On utilise  un FileOutputStream qui permet de lire
+		 * Strategie : On utilise  un FileOutputStream qui permet de lire
 		 * la bd d'un coup.
 		 */
 		FileOutputStream fic;
@@ -85,10 +85,10 @@ public class UtilitaireFichier {
 
 		try {
 
-			//Crée le fichier 
+			//Cree le fichier 
 			fic = new FileOutputStream(nomFic);
 
-			//Ouverture du tampon d'écriture
+			//Ouverture du tampon d'ecriture
 			tampon = new ObjectOutputStream(fic);
 			tampon.writeObject(clinique);
 			tampon.close();		
@@ -97,10 +97,10 @@ public class UtilitaireFichier {
 
 			e1.printStackTrace();
 
-			// Une erreur de lecture, on détruit le fichier.
+			// Une erreur de lecture, on detruit le fichier.
 		} catch (IOException e) {
 
-			// On obtient le chemin du fichier pour le détruire.
+			// On obtient le chemin du fichier pour le detruire.
 			Path path = 
 					FileSystems.getDefault().getPath(nomFic);
 
