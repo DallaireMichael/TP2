@@ -66,8 +66,6 @@ public class Calendrier implements Serializable{
 		//Lorsque la différence des deux dates est = à 0
 		//On ajoute un rendez-vous dans la liste à la même date
 		
-		System.out.println(plage);
-		
 		if(plage != null) {
 			
 			((PlageHoraire) listeHoraire.getElement()).addRendezVous(rendezVous);
@@ -150,8 +148,6 @@ public class Calendrier implements Serializable{
 		
 		//passe en revue tous les éléments de la liste
 		while(i <= listeHoraire.getNbElements()) {
-			
-			System.out.print(information);
 			
 			information += listeHoraire.getElement().toString() + " \n";
 			
@@ -335,13 +331,20 @@ public class Calendrier implements Serializable{
 		} catch (Exception e) {
 			
 			e.getMessage();
+			
+			return plage;
 		}
 		
 		return plage;
 		
 	}
 	
-	
+	/**
+	 * Trouve le rendez-vous cherché puis le supprime
+	 * Supprime la plage horaire s'il n'y a plus de rendez-vous
+	 * @param ren
+	 * @return boolean
+	 */
 	public boolean annulerRendezVous(RendezVous ren){
 		
 		/*
@@ -399,5 +402,97 @@ public class Calendrier implements Serializable{
 		return false;
 		
 	}
+	
+	/**
+	 * Cherche toutes les plage horaire d'un docteur donné
+	 * et retourne un Calendrier pour ce docteur
+	 * @param doc
+	 * @return Calendrier
+	 */
+	public Calendrier obtenirCalendrierDocteur(Docteur doc){
+		
+		listeHoraire.setPcDebut();
+		
+		//crée dès le départ un calendrier pour le docteur
+		Calendrier docCalendrier = new Calendrier();
+		
+		//Compteur de plage horaire dans la liste
+		int i = 1;
+		
+		//Parcours la liste de plage horaire
+		while(i <= listeHoraire.getNbElements()) {
+			
+			//Liste de rendez-vous d'une plage horaire
+			ArrayList<RendezVous> listeRendezVous = 
+					((PlageHoraire) listeHoraire.getElement()).getRendezVous();
+			
+			//Parcours tous les rendez-vous
+			for(int j = 0; j < listeRendezVous.size(); j++) {
+				
+				//Vérifie si le rendez-vous contient le docteur concerné
+				if(doc.equals(listeRendezVous.get(j).getDocteur())) {
+
+					docCalendrier.ajouterRendezVous(
+						listeRendezVous.get(j), 
+						( (PlageHoraire) listeHoraire.getElement()).getDate());
+					
+				}
+				
+			}
+			
+			i++;
+			listeHoraire.setPcSuivant();
+			
+		}
+		
+		return docCalendrier;
+	}
+	
+
+	/**
+	 * Cherche toutes les plage horaire d'un infirmier donné
+	 * et retourne un Calendrier pour cet infirmier
+	 * @param infirmier
+	 * @return Calendrier
+	 */
+	public Calendrier obtenirCalendrierInfirmier(Infirmier infirmier){
+		
+		listeHoraire.setPcDebut();
+		
+		//crée dès le départ un calendrier pour l'infirmier
+		Calendrier infirmierCalendrier = new Calendrier();
+		
+		//Compteur de plage horaire dans la liste
+		int i = 1;
+		
+		//Parcours la liste de plage horaire
+		while(i <= listeHoraire.getNbElements()) {
+			
+			//Liste de rendez-vous d'une plage horaire
+			ArrayList<RendezVous> listeRendezVous = 
+					((PlageHoraire) listeHoraire.getElement()).getRendezVous();
+			
+			//Parcours tous les rendez-vous
+			for(int j = 0; j < listeRendezVous.size(); j++) {
+				
+				//Vérifie si le rendez-vous contient l'infirmier concerné
+				if(infirmier.equals(listeRendezVous.get(j).getInfirmier())) {
+
+					infirmierCalendrier.ajouterRendezVous(
+						listeRendezVous.get(j), 
+						((PlageHoraire) listeHoraire.getElement()).getDate());
+					
+				}
+				
+			}
+			
+			i++;
+			listeHoraire.setPcSuivant();
+			
+		}
+		
+		return infirmierCalendrier;
+	}
+	
 	
 }

@@ -20,15 +20,15 @@ public class Test{
 		
  id = new Identification("Dallaire", "Pouchon");
 		
-		 ren = new RendezVous(new Patient(id,0), new Docteur(id,0), new Infirmier(id,false));
+ 		Docteur doc = new Docteur(id,0);
+ 
+		 ren = new RendezVous(new Patient(id,0), doc, new Infirmier(id,false));
 		
 		plage.addRendezVous(ren);
 		
 		cal.ajouterRendezVous(ren, plage.getDate());
 		
-		Patient patient = new Patient(id,0);
 		
-		System.out.print("\n\nCalendrier: " + cal.toString());
 	
 	}
 	
