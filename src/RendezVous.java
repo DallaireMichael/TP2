@@ -28,7 +28,7 @@ public class RendezVous implements Serializable {
 	 * 		  La classe Patient.
 	 * @param docteur
 	 * 		  La classe Docteur.
-	 * * @param infirmier
+	 * @param infirmier
 	 * 		  La classe Infirmier.
 	 */
 	public RendezVous(Patient patient, Docteur docteur, Infirmier infirmier) throws Exception {
@@ -41,7 +41,7 @@ public class RendezVous implements Serializable {
 		}
 		
 		this.patient = patient.clone();
-		this.docteur = docteur.clone(docteur);
+		this.docteur = docteur.clone();
 		this.infirmier = infirmier.clone();
 		
 	}

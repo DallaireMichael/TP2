@@ -112,8 +112,8 @@ public class Docteur implements Serializable{
 	 * @param doc
 	 * @return Docteur
 	 */
-	public Docteur clone(Docteur doc){
-		return new Docteur(doc.id.clone(),departement);
+	public Docteur clone(){
+		return new Docteur(id.clone(),departement);
 	}
 	
 	/**

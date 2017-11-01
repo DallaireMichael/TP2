@@ -143,6 +143,10 @@ public class Liste{
 		
 	}
 	
+	/*
+	 * MUTATEURs
+	 */
+	
 	/**
 	 * Remet Position courante a debut
 	 */
@@ -172,6 +176,30 @@ public class Liste{
 		
 		pc = noeudPrecedent();
 		
+	}
+	
+	/*
+	 * ACCESSEURS
+	 */
+	
+	/**
+	 * Retourne le Noeud à la position courante
+	 * @return
+	 */
+	public Object getElement() {
+		return pc.element;
+	}
+	
+	public int getNbElements() {
+		return nbElements;
+	}
+	
+	public Object getDebut() {
+		return debut;
+	}
+	
+	public Object getFin() {
+		return fin;
 	}
 	
 	/**
@@ -217,5 +245,7 @@ public class Liste{
 		
 		nbElements--;
 	}
-
+	
+	
+	
 }

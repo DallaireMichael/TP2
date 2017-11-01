@@ -24,8 +24,8 @@ public class Patient implements Serializable {
 	 */
 	public Patient() {
 		
-		this.id = new Identification();
-		this.numeroAssuranceSocial = 0;
+		id = new Identification();
+		numeroAssuranceSocial = 0;
 		
 	}
 	
@@ -39,8 +39,7 @@ public class Patient implements Serializable {
 	 */
 	public Patient(Identification id, int numeroAssuranceSocial) {
 		
-		this.id.setNom(id.getNom());
-		this.id.setPrenom(id.getPrenom());
+		id = id.clone();
 		this.setNumeroAssuranceSocial(numeroAssuranceSocial);
 		
 	}
