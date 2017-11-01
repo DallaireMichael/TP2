@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 public class Constantes {
 	
 	/***************************
@@ -126,15 +125,5 @@ public class Constantes {
     
     public static final String MSG_FIN = 
     "\nMerci et à la prochaine...\n";
-=======
-public class Constantes{
-	
-	//Heure d'ouverture de la Clinique
-	public static final int HEURE_OUVERTURE = 8;
-	
-	//Heure de fermeture de la Clinique
-	public static final int HEURE_FERMETURE = 20;
-	
-	public static final int[] MINUTES_INTERVALLE = {0,15,30,45};
->>>>>>> afdf5b8ce88d527374013ac3b240009b0a8f07f1
+    
 }

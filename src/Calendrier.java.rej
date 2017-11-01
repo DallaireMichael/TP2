@@ -1,0 +1,99 @@
+diff a/src/Calendrier.java b/src/Calendrier.java	(rejected hunks)
+@@ -403,4 +403,96 @@
+ 		
+ 	}
+ 	
++	/**
++	 * Cherche toutes les plage horaire d'un docteur donn�
++	 * et retourne un Calendrier pour ce docteur
++	 * @param doc
++	 * @return Calendrier
++	 */
++	public Calendrier obtenirCalendrierDocteur(Docteur doc){
++		
++		listeHoraire.setPcDebut();
++		
++		//cr�e d�s le d�part un calendrier pour le docteur
++		Calendrier docCalendrier = new Calendrier();
++		
++		//Compteur de plage horaire dans la liste
++		int i = 1;
++		
++		//Parcours la liste de plage horaire
++		while(i <= listeHoraire.getNbElements()) {
++			
++			//Liste de rendez-vous d'une plage horaire
++			ArrayList<RendezVous> listeRendezVous = 
++					((PlageHoraire) listeHoraire.getElement()).getRendezVous();
++			
++			//Parcours tous les rendez-vous
++			for(int j = 0; j < listeRendezVous.size(); j++) {
++				
++				//V�rifie si le rendez-vous contient le docteur concern�
++				if(doc.equals(listeRendezVous.get(j).getDocteur())) {
++
++					docCalendrier.ajouterRendezVous(
++						listeRendezVous.get(j), 
++						( (PlageHoraire) listeHoraire.getElement()).getDate());
++					
++				}
++				
++			}
++			
++			i++;
++			listeHoraire.setPcSuivant();
++			
++		}
++		
++		return docCalendrier;
++	}
++	
++
++	/**
++	 * Cherche toutes les plage horaire d'un infirmier donn�
++	 * et retourne un Calendrier pour cet infirmier
++	 * @param infirmier
++	 * @return Calendrier
++	 */
++	public Calendrier obtenirCalendrierInfirmier(Infirmier infirmier){
++		
++		listeHoraire.setPcDebut();
++		
++		//cr�e d�s le d�part un calendrier pour l'infirmier
++		Calendrier infirmierCalendrier = new Calendrier();
++		
++		//Compteur de plage horaire dans la liste
++		int i = 1;
++		
++		//Parcours la liste de plage horaire
++		while(i <= listeHoraire.getNbElements()) {
++			
++			//Liste de rendez-vous d'une plage horaire
++			ArrayList<RendezVous> listeRendezVous = 
++					((PlageHoraire) listeHoraire.getElement()).getRendezVous();
++			
++			//Parcours tous les rendez-vous
++			for(int j = 0; j < listeRendezVous.size(); j++) {
++				
++				//V�rifie si le rendez-vous contient l'infirmier concern�
++				if(infirmier.equals(listeRendezVous.get(j).getInfirmier())) {
++
++					infirmierCalendrier.ajouterRendezVous(
++						listeRendezVous.get(j), 
++						((PlageHoraire) listeHoraire.getElement()).getDate());
++					
++				}
++				
++			}
++			
++			i++;
++			listeHoraire.setPcSuivant();
++			
++		}
++		
++		return infirmierCalendrier;
++	}
++	
++	
+ }
+\ No newline at end of file

@@ -31,7 +31,9 @@ public class RendezVous implements Serializable {
 	 * @param infirmier
 	 * 		  La classe Infirmier.
 	 */
-	public RendezVous(Patient patient, Docteur docteur, Infirmier infirmier) throws Exception {
+	public RendezVous(Patient patient, 
+			Docteur docteur, 
+			Infirmier infirmier) throws Exception {
 		
 		// Si un attribut est null, une exception est levée.
 		if(patient == null || docteur == null || infirmier == null) {
