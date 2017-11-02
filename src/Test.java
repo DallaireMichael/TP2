@@ -18,7 +18,7 @@ public class Test{
 		
 		cal.ajouterRendezVous(ren, plage.getDate());
 		
- id = new Identification("Dallaire", "Pouchon");
+		id = new Identification("Dallaire", "Pouchon");
 		
 		 ren = new RendezVous(new Patient(id,0), new Docteur(id,0), new Infirmier(id,false));
 		
@@ -29,6 +29,11 @@ public class Test{
 		Patient patient = new Patient(id,0);
 		
 		System.out.print("\n\nCalendrier: " + cal.toString());
+		
+		
+		Clinique clinique = new Clinique();
+		
+		clinique.rendezVousPatient(patient);
 	
 	}
 	
