@@ -120,11 +120,7 @@ public class PlageHoraire implements Serializable {
 			
 		}
 		
-		else {
-		
-			return false;
-
-		}
+		return false;
 		
 	}
 	

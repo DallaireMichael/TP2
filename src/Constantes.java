@@ -1,3 +1,4 @@
+
 /**
  * Classe contenant toutes les constantes nécessaires au programme.
  * 
@@ -12,7 +13,6 @@ public class Constantes {
 	
 	// Référence au fichier de sauvegarde de la clinique.
 	public static final String CHEMIN_FICHIER = "src/clinique.bin";
-	//public static final FileInputStream FICHIER_SAUVEGARDE = new FileInputStream(CHEMIN_FICHIER);
 	
 	// Heure d'ouverture de la Clinique.
 	public static final int HEURE_OUVERTURE = 8;
@@ -36,7 +36,16 @@ public class Constantes {
     public static final int CHIRURGIE = 1;
     public static final int URGENCE = 2;
     public static final int UROLOGIE = 3;
-	
+    
+    // Les type de personnes qu'on veut afficher une liste.
+    public static final String RECHERCHE_DOC = 
+    "******* La liste des Docteurs *******"; 
+    
+    public static final String RECHERCHE_INF = 
+    "****** La liste des Infirmiers ******";
+    
+    public static final String RECHERCHE_PAT = 
+    "******* La liste des Patients *******";
     
     // Les messages à afficher sur l'écran.
     public static final String LIGNE_ENTETE =
@@ -93,6 +102,15 @@ public class Constantes {
     public static final String MSG_OPTION_14 =
     "\n14 - Quitter";
     
+    public static final String MSG_CHOIX_DOC =
+    "\nEntrez le chiffre du docteur.";
+    
+    public static final String MSG_CHOIX_INF =
+    "\nEntrez le chiffre de l'infirmier.";
+    
+    public static final String MSG_CHOIX_PAT =
+    "\nEntrez le chiffre du patient.";
+    
     public static final String MSG_SOL_NOM_DOC =
     "\nEntrez le nom d'un docteur";
     
@@ -114,6 +132,21 @@ public class Constantes {
     
     public static final String MSG_SOL_PRENOM_PAT =
     "\nEntrez le prénom d'un patient";
+    
+    public static final String MSG_SOL_JOUR =
+	"\nEntrez le jour du rendez-vous.";
+    
+    public static final String MSG_SOL_MOIS =
+    "\nEntrez le mois du rendez-vous.";
+    
+    public static final String MSG_SOL_ANNEE =
+    "\nEntrez l'année du rendez-vous.";
+    
+    public static final String MSG_SOL_HEURE =
+    "\nEntrez l'heure du rendez-vous.";
+    
+    public static final String MSG_SOL_MINUTE =
+    "\nEntrez le jour du rendez-vous.";
     
     public static final String MSG_SOL_NAM_PAT =
     "\nEntrez le numréo d'assurance maladie d'un patient";

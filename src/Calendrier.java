@@ -1,8 +1,5 @@
 import java.io.Serializable;
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
->>>>>>> afdf5b8ce88d527374013ac3b240009b0a8f07f1
 import java.util.Date;
 
 /**
@@ -69,11 +66,6 @@ public class Calendrier implements Serializable{
 		//Lorsque la différence des deux dates est = à 0
 		//On ajoute un rendez-vous dans la liste à la même date
 		
-<<<<<<< HEAD
-		System.out.println(plage);
-		
-=======
->>>>>>> afdf5b8ce88d527374013ac3b240009b0a8f07f1
 		if(plage != null) {
 			
 			((PlageHoraire) listeHoraire.getElement()).addRendezVous(rendezVous);
@@ -100,18 +92,11 @@ public class Calendrier implements Serializable{
 		//Compteur d'éléments passé
 		int i = 1;
 				
-<<<<<<< HEAD
-		//Vérifie que l'element present a la même date sinon on passe à un autre élément
-		//Jusqu'à qu'on aie passé tous les éléments
-		while(	i < listeHoraire.getNbElements() &&
-			((PlageHoraire) listeHoraire.getElement()).getDate().compareTo(date) != 0) {
-=======
 		//Vérifie que l'element present a la même date sinon on 
 		//passe à un autre élément jusqu'à qu'on aie passé tous les éléments
 		while(i < listeHoraire.getNbElements() &&
 			((PlageHoraire) 
 					listeHoraire.getElement()).getDate().compareTo(date) != 0) {
->>>>>>> afdf5b8ce88d527374013ac3b240009b0a8f07f1
 					
 			//Élément suivant
 			listeHoraire.setPcSuivant();
@@ -122,12 +107,8 @@ public class Calendrier implements Serializable{
 		
 		//la boucle s'est arrêté au dernier element,
 		//Donc on s'assure que le dernier element est la même date ou non
-<<<<<<< HEAD
-		if(((PlageHoraire) listeHoraire.getElement()).getDate().compareTo(date) == 0) {
-=======
 		if(((PlageHoraire) 
 				listeHoraire.getElement()).getDate().compareTo(date) == 0) {
->>>>>>> afdf5b8ce88d527374013ac3b240009b0a8f07f1
 			
 			return listeHoraire.getElement();
 			
@@ -144,27 +125,18 @@ public class Calendrier implements Serializable{
 	 */
 	private void insereNouvellePlageHoraire(RendezVous rendezVous, Date date) {
 		
-<<<<<<< HEAD
-		PlageHoraire plage = new PlageHoraire(date.getYear(),date.getMonth(),date.getDay(),
-				date.getHours(),date.getMinutes());
-=======
 		PlageHoraire plage = new PlageHoraire(date.getYear(),date.getMonth()
 				,date.getDay(),date.getHours(),date.getMinutes());
->>>>>>> afdf5b8ce88d527374013ac3b240009b0a8f07f1
 		
 		plage.addRendezVous(rendezVous);
 		listeHoraire.inserer(plage);
 		
 	}
 	
-<<<<<<< HEAD
-	
-=======
 	/**
 	 * Retourne un chaine de caractère pour 
 	 * tester tous les attributs
 	 */
->>>>>>> afdf5b8ce88d527374013ac3b240009b0a8f07f1
 	public String toString() {
 		
 		listeHoraire.setPcDebut();
@@ -186,19 +158,14 @@ public class Calendrier implements Serializable{
 				
 			}
 			
-<<<<<<< HEAD
-=======
 			i++;
 			
 			listeHoraire.setPcSuivant();
->>>>>>> afdf5b8ce88d527374013ac3b240009b0a8f07f1
 		}
 		
 		return information;
 		
 	}
-<<<<<<< HEAD
-=======
 	
 	/**
 	 * Obtient un patient et regarde à  travers toutes les plages horaire
@@ -528,5 +495,4 @@ public class Calendrier implements Serializable{
 	}
 	
 	
->>>>>>> afdf5b8ce88d527374013ac3b240009b0a8f07f1
 }
