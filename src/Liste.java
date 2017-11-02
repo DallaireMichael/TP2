@@ -1,4 +1,4 @@
-
+import java.io.Serializable;
 
 /**
  * Liste simplement chaîné
@@ -6,7 +6,7 @@
  * @author Michaël Dallaire
  *
  */
-public class Liste{
+public class Liste implements Serializable {
 	
 	/**
 	 * Noeud permet de faire une liste
@@ -14,7 +14,7 @@ public class Liste{
 	 * @author Michaël Dallaire
 	 *
 	 */
-	private class Noeud{
+	private class Noeud implements Serializable {
 		
 		//sauvegarde d'un element du type au choix
 		private Object element;

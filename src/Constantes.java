@@ -146,7 +146,7 @@ public class Constantes {
     "\nEntrez l'heure du rendez-vous.";
     
     public static final String MSG_SOL_MINUTE =
-    "\nEntrez le jour du rendez-vous.";
+    "\nEntrez les minutes du rendez-vous.";
     
     public static final String MSG_SOL_NAM_PAT =
     "\nEntrez le numréo d'assurance maladie d'un patient";
