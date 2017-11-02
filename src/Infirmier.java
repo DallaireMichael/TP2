@@ -126,7 +126,8 @@ public class Infirmier implements Serializable {
 	 */
 	public String toString() {
     	
-    	return "\nNom de l'infirmier : " + id.toString() + "\nDisponible : " + this.getDisponibilite();
+    	return "\nNom de l'infirmier : " + id.toString() + "\nDisponible : " +
+    			this.getDisponibilite();
     	
     }
 	
@@ -141,7 +142,8 @@ public class Infirmier implements Serializable {
 	public boolean equals(Infirmier infirmerComparaison) {
     	
     	return this.id.equals(infirmerComparaison.getIdentification()) &&
-    		   this.getDisponibilite() == infirmerComparaison.getDisponibilite(); 
+    		   this.getDisponibilite() == 
+    		   infirmerComparaison.getDisponibilite(); 
     
     }
 	

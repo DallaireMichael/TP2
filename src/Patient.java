@@ -2,7 +2,8 @@ import java.io.Serializable;
 
 /**
  * Classe représentant un patient par ses deux attributs qui sont
- * une instance de la classe Identification et son numéro d'assurance social, qui est un entier.
+ * une instance de la classe Identification et son numéro d'assurance social, 
+ * qui est un entier.
  * 
  * @author Niko Girardelli
  * @since (copyright) Niko Girardelli - A2017
@@ -35,19 +36,12 @@ public class Patient implements Serializable {
 	 * @param id
 	 * 		  La classe Identification.
 	 * @param numeroAssuranceSocial
-	 * 		  Un entier qui représente le numéro d'assurance social d'un patient.
+	 * 		  Un entier qui représente le numéro d'assurance 
+	 * 		  social d'un patient.
 	 */
 	public Patient(Identification id, int numeroAssuranceSocial) {
 		
-<<<<<<< HEAD
-<<<<<<< HEAD
-		id = id.clone();
-=======
 		this.id = id.clone();
->>>>>>> afdf5b8ce88d527374013ac3b240009b0a8f07f1
-=======
-		this.id = id.clone();
->>>>>>> 28a3b7f19a808fadd5314ec9f1575ec3ac595fd9
 		this.setNumeroAssuranceSocial(numeroAssuranceSocial);
 		
 	}
@@ -98,7 +92,8 @@ public class Patient implements Serializable {
 	 * Change la valeur du numéro d'assurance social d'un patient.
 	 * 
 	 * @param numeroAssuranceSocial
-	 * 		  Un entier qui représente le numéro d'assurance social d'un patient.
+	 * 		  Un entier qui représente le numéro d'assurance 
+	 * 		  social d'un patient.
 	 * 
 	 * @return void.
 	 */
@@ -134,7 +129,8 @@ public class Patient implements Serializable {
 	public String toString() {
     	
     	return "\nNom du patient : " + id.toString() +
-    		   "\nNuméro d'assurance social : " + this.getNumeroAssuranceSocial();
+    		   "\nNuméro d'assurance social : " +
+    			this.getNumeroAssuranceSocial();
     
     }
 	
@@ -149,7 +145,8 @@ public class Patient implements Serializable {
 	public boolean equals(Patient patientComparaison) {
     	
     	return this.id.equals(patientComparaison.getIdentification()) &&
-    		   this.getNumeroAssuranceSocial() == patientComparaison.getNumeroAssuranceSocial(); 
+    		   this.getNumeroAssuranceSocial() == 
+    		   patientComparaison.getNumeroAssuranceSocial(); 
     
     }
 	
@@ -160,7 +157,8 @@ public class Patient implements Serializable {
 	 */
 	public Patient clone() {
     	
-    	return new Patient(this.getIdentification(),this.getNumeroAssuranceSocial());
+    	return new Patient(this.getIdentification(),
+    					   this.getNumeroAssuranceSocial());
     
     }
 	

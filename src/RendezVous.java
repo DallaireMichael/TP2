@@ -38,7 +38,8 @@ public class RendezVous implements Serializable {
 		// Si un attribut est null, une exception est levée.
 		if(patient == null || docteur == null || infirmier == null) {
 			
-			throw new Exception("Attribut nul pour un rendez-vous est interdit.");
+			throw new Exception("Attribut nul pour un " + 
+								"rendez-vous est interdit.");
 			
 		}
 		

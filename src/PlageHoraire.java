@@ -3,8 +3,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Classe représentant l'horaire d'une journée de la clinique. Elle contient deux attributs
- * la date et l'heure de la plage horaire et une liste des rendez-vous placé durant la plage horaire.
+ * Classe représentant l'horaire d'une journée de la clinique. Elle 
+ * contient deux attributs la date et l'heure de la plage horaire 
+ * et une liste des rendez-vous placé durant la plage horaire.
  * 
  * @author Niko Girardelli
  * @since (copyright) Niko Girardelli - A2017
@@ -26,9 +27,11 @@ public class PlageHoraire implements Serializable {
 	 * et la liste des rendez-vous est instanciée, mais est vide.
 	 * 
 	 * @param annee
-	 * 		  Un entier qui représente l'année, on doit enlever 1900 pour avoir la bonne anéee. 
+	 * 		  Un entier qui représente l'année, on doit enlever 1900 pour 
+	 * 		  avoir la bonne anéee. 
 	 * @param mois
-	 * 		  Un entier qui représente le mois, on doit soustraire 1, car les mois sont entre 0 et 11.
+	 * 		  Un entier qui représente le mois, on doit soustraire 1, car 
+	 * 		  les mois sont entre 0 et 11.
 	 * @param jour
 	 * 		  Un entier qui représente le jour pour la nouvelle date. 
 	 * @param heure
@@ -59,7 +62,8 @@ public class PlageHoraire implements Serializable {
 	}
 	
 	/**
-	 * Retourne une copie de la liste des rendez-vous de cette plage horaire (la référence).
+	 * Retourne une copie de la liste des rendez-vous de cette 
+	 * plage horaire (la référence).
 	 * 
 	 * @return ArrayList<RendezVous> listeRendezVous.
 	 */
@@ -74,12 +78,15 @@ public class PlageHoraire implements Serializable {
      * **************************/
 	
 	/**
-	 * Change les valeurs de la date avec celles qui sont passées en paramètres.
+	 * Change les valeurs de la date avec celles qui sont 
+	 * passées en paramètres.
 	 * 
 	 * @param annee
-	 * 		  Un entier qui représente l'année, on doit enlever 1900 pour avoir la bonne anéee. 
+	 * 		  Un entier qui représente l'année, on doit enlever 1900 
+	 * 	      pour avoir la bonne anéee. 
 	 * @param mois
-	 * 		  Un entier qui représente le mois, on doit soustraire 1, car les mois sont entre 0 et 11.
+	 * 		  Un entier qui représente le mois, on doit soustraire 1, 
+	 * 		  car les mois sont entre 0 et 11.
 	 * @param jour
 	 * 		  Un entier qui représente le jour pour la nouvelle date. 
 	 * @param heure
@@ -112,7 +119,8 @@ public class PlageHoraire implements Serializable {
 	 */
 	public boolean addRendezVous(RendezVous rendezVous) {
 		
-		// Vérifie si rendezVous n'est pas dans la liste et l'ajoute s'il n'est pas présent.
+		// Vérifie si rendezVous n'est pas dans la liste et l'ajoute 
+		// s'il n'est pas présent.
 		if(!listeRendezVous.contains(rendezVous)) {
 			
 			listeRendezVous.add(rendezVous);

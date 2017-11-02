@@ -45,8 +45,6 @@ public class Calendrier implements Serializable{
 			
 		}
 		
-		listeHoraire.getNbElements();
-		
 		//On s'assure que la position courante est au début
 		//pour boucler à travers
 		if(listeHoraire.getNbElements() != 0) {
@@ -308,8 +306,9 @@ public class Calendrier implements Serializable{
 	/**
 	 * Retourne la première PlageHoraire de la liste et la supprime de la liste
 	 * @return
+	 * @throws Exception 
 	 */
-	public PlageHoraire obtenirProchainePlageHoraire(){
+	public PlageHoraire obtenirProchainePlageHoraire() throws Exception{
 		
 		/*
 		 * STRATÉGIE : On place la position courante au début
@@ -322,19 +321,9 @@ public class Calendrier implements Serializable{
 		
 		//sauvegarde de la plage qui sera supprimé de la liste
 		PlageHoraire plage = (PlageHoraire) listeHoraire.getElement();
-		
 
-		try {
+		listeHoraire.supprimerPc();
 			
-			listeHoraire.supprimerPc();
-			
-		} catch (Exception e) {
-			
-			e.getMessage();
-			
-			return plage;
-		}
-		
 		return plage;
 		
 	}
@@ -344,8 +333,9 @@ public class Calendrier implements Serializable{
 	 * Supprime la plage horaire s'il n'y a plus de rendez-vous
 	 * @param ren
 	 * @return boolean
+	 * @throws Exception 
 	 */
-	public boolean annulerRendezVous(RendezVous ren){
+	public boolean annulerRendezVous(RendezVous ren) throws Exception{
 		
 		/*
 		 * STRATÉGIE : Placer position courante au début pour passer
@@ -380,13 +370,8 @@ public class Calendrier implements Serializable{
 					//éfface la Plage horaire dans ce cas
 					if(listeRendezVous.size() == 0){
 						
-						try {
+						listeHoraire.supprimerPc();
 							
-							listeHoraire.supprimerPc();
-							
-						} catch (Exception e) {
-							e.getMessage();
-						}	
 					}
 					
 					return true;

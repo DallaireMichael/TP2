@@ -25,7 +25,7 @@ public class ProgrammePrincipal {
      * * Le programme principal.
      * **************************/
 	
-	public void main(String [] args) {
+	public static void main(String [] args) {
 		
 		try {
 			
@@ -45,11 +45,15 @@ public class ProgrammePrincipal {
 			String nom = "";
 			String prenom = "";
 			
+			// Classes utilisées temporairement.
+			Docteur docTemp;
+			Patient patTemp;
+			Infirmier infTemp;
+			Date dateTemp;
+			
 			// Création d'une classe Clinique avec une nouvelle
 			// ou l'ancienne sauvergarde.
 			Clinique clinique = verificationAncienneSauvegarde();
-			
-			
 			
 			/**********************************
 		     * * Début de la boucle principale.
@@ -100,12 +104,13 @@ public class ProgrammePrincipal {
 					  	  // Solicite un département et l'enregistre.
 					  	  System.out.println(Constantes.MSG_SOL_DEP_DOC);
 					  	  entier = clavier.nextInt();
-					  
+					  	
 					  	  // On enregistre le docteur dans la 
 					  	  // liste des docteurs.
-					      //clinique.ajouterDocteur(new Docteur(
-					    		// new Identification(nom, prenom), entier));
-					  	  
+					      clinique.ajouterDocteur(new Docteur(
+					    		new Identification(nom, prenom),
+					    		entier));
+
 					  	  // On remet le menu après l'opération
 					      choix = 0;
 					      break;
@@ -121,9 +126,9 @@ public class ProgrammePrincipal {
 					      
 					      // On enregistre l'infirmier dans la liste 
 					      // des infirmiers en étant disponible.
-					  	  //clinique.ajouterInfirmier(new Infirmier(
-					      //		new Identification(nom, prenom),
-							  		//Constantes.DISPONIBLE));
+					  	  clinique.ajouterInfirmier(new Infirmier(
+					      		new Identification(nom, prenom), 
+					      		Constantes.DISPONIBLE));
 					      
 					      // On remet le menu après l'opération
 					      choix = 0;
@@ -144,82 +149,58 @@ public class ProgrammePrincipal {
 					  	  entier = clavier.nextInt();
 					  	  
 				      	  // On enregistre le patient à la liste des patients.
-				      	  //clinique.ajouterPatient(new Patient(
-					  	  //	new Identification(nom, prenom), entier);
-					  	  
-					  	  // On remet le menu après l'opération
-					      choix = 0;
-				      	  break;
-				
-				case 4 :  // Affiche la liste des docteurs, 
-						  // des infirmiers et des patients.
-						  // Solicite numéro du docteur voulu.
-						  retournerListe(Constantes.RECHERCHE_DOC, clinique);
-						  System.out.print(Constantes.MSG_CHOIX_DOC);
-						  Docteur doc = clinique.getDocteur(
-								  			clavier.nextInt());
-						  
-						  // Solicite numéro de l'infirmier voulu.
-						  retournerListe(Constantes.RECHERCHE_INF, clinique);
-						  System.out.print(Constantes.MSG_CHOIX_INF);
-						  Infirmier inf = clinique.getInfirmier(
-								  			clavier.nextInt());
-						  
-						  // Solicite numéro du patient voulu.
-						  retournerListe(Constantes.RECHERCHE_PAT, clinique);
-						  System.out.print(Constantes.MSG_CHOIX_PAT);
-						  Patient pat = clinique.getPatient(
-								  			clavier.nextInt());
-						  
-						  // Solicite une date.
-						  System.out.print(Constantes.MSG_SOL_ANNEE);
-						  int annee = clavier.nextInt();
-						  System.out.print(Constantes.MSG_SOL_MOIS);
-						  int mois = clavier.nextInt();
-						  System.out.print(Constantes.MSG_SOL_JOUR);
-						  int jour = clavier.nextInt();
-						  System.out.print(Constantes.MSG_SOL_HEURE);
-						  int heure = clavier.nextInt(); 
-						  System.out.print(Constantes.MSG_SOL_MINUTE);
-						  int minute = clavier.nextInt();
-						  Date date = new Date(annee, mois, jour, 
-								  		  		heure, minute);
-						  
-						  // Fait référence au calendrier de la clinique.
-						  clinique.getCalendrier().ajouterRendezVous(
-								  		new RendezVous(pat, doc, inf), date);
-						  
+				      	  clinique.ajouterPatient(new Patient( 
+				      			  new Identification(nom, prenom), entier));
+				      	System.out.print(clinique.getPatient(0));
 					  	  // On remet le menu après l'opération
 					      choix = 0;
 				      	  break;
 				      	  
-				case 5 :  // Solicite numéro du patient voulu.
-					  	  retournerListe(Constantes.RECHERCHE_PAT, clinique);
-					  	  System.out.print(Constantes.MSG_CHOIX_PAT);
-					  	  Patient pat = clinique.getPatient(
-							  			clavier.nextInt());
-					  	  
-					  	  // Solicite une date.
-						  System.out.print(Constantes.MSG_SOL_ANNEE);
-						  int annee = clavier.nextInt();
-						  System.out.print(Constantes.MSG_SOL_MOIS);
-						  int mois = clavier.nextInt();
-						  System.out.print(Constantes.MSG_SOL_JOUR);
-						  int jour = clavier.nextInt();
-						  System.out.print(Constantes.MSG_SOL_HEURE);
-						  int heure = clavier.nextInt(); 
-						  System.out.print(Constantes.MSG_SOL_MINUTE);
-						  int minute = clavier.nextInt();
-						  Date date = new Date(annee, mois, jour, 
-								  		  		heure, minute);
-						  
-						  // Fait référence au calendrier de la clinique.
-						  clinique.rendezVousPatient(
-								  		new RendezVous(pat, doc, inf), date);
-				      	  /************************************************************/
-						  										/** AJOUTER PATIENT **/
-						  break;
 				
+				case 4 :  // Affiche l'interface d'ajout d'un rendez-vous.
+						  // Affiche la liste des docteurs, des infirmiers,
+						  // et des patients, et retourne ceux choisis
+						  docTemp = docChoisi(clinique, clavier);
+						  infTemp = infChoisi(clinique, clavier);
+						  patTemp = patChoisi(clinique, clavier);
+						  
+						  // Demande une date par l'utilisateur.
+						  dateTemp = dateChoisie(clinique, clavier);
+						  
+						  // Fait référence au calendrier de la clinique et
+						  // crée un nouveau rendez-vous avec
+						  // nos informations reçues.
+						  clinique.getCalendrier().ajouterRendezVous(
+								  		new RendezVous(patTemp, docTemp, infTemp),
+								  		dateTemp);
+						  System.out.print(clinique.getCalendrier());
+					  	  // On remet le menu après l'opération
+					      choix = 0;
+				      	  break;
+				      	  
+				case 5 :  // Affiche l'interface trouver un rendez-vous
+					      // pour un patient.
+						  // Demande de choisir un patient de la liste
+						  // à l'utilisateur.
+						  patTemp = patChoisi(clinique, clavier);
+						  
+						  // On trouve un rendez-vous disponible pour
+						  // le patient reçu.
+						  clinique.rendezVousPatient(patTemp);
+						  
+						  // On remet le menu après l'opération
+					      choix = 0;
+						  break;
+						  
+				case 6 :  break;
+				case 7 :  break;
+				case 8 :  break;
+				case 9 :  break;
+				case 10 :  break;
+				case 11 :  break;
+				case 12 :  break;
+				case 13 :  break;
+				case 14 :  break;
 				default : break;
 				
 				}
@@ -235,6 +216,97 @@ public class ProgrammePrincipal {
 			
 		}
 	
+	}
+	
+	/**********************************
+     * * Les sous-programmes.
+     * *********************************/
+	
+	/**
+	 * Demande une date contenant, le jour, le mois, 
+	 * l'année, l'heure et les minutes pour un rendez-vous.
+	 *
+	 * On retourne par la suite une classe Date.
+	 * 
+	 * @return Date date.
+	 */
+	private static Date dateChoisie(Clinique clinique, Scanner clavier) {
+		
+		// Solicite une date et la retourne.
+		System.out.print(Constantes.MSG_SOL_ANNEE);
+		int annee = clavier.nextInt();
+		System.out.print(Constantes.MSG_SOL_MOIS);
+		int mois = clavier.nextInt();
+		System.out.print(Constantes.MSG_SOL_JOUR);
+		int jour = clavier.nextInt();
+		System.out.print(Constantes.MSG_SOL_HEURE);
+		int heure = clavier.nextInt(); 
+		System.out.print(Constantes.MSG_SOL_MINUTE);
+		int minute = clavier.nextInt();
+		Date date = new Date(annee, mois, jour, heure, minute);
+		
+		return date;
+	
+	}
+	
+	/**
+	 * Affiche la liste des docteurs de la Clinique, et demande
+	 * à l'utilisateur d'écrire le chiffre du docteur qui veut.
+	 *
+	 * On utilise le sous-programme retournerListe() pour afficher
+	 * notre liste de docteur.
+	 * 
+	 * @return Docteur doc.
+	 */
+	private static Docteur docChoisi(Clinique clinique, Scanner clavier) {
+		
+		// Solicite le numéro du docteur voulu et retourne le docteur voulu.
+		retournerListe(Constantes.RECHERCHE_DOC, clinique);
+		System.out.print(Constantes.MSG_CHOIX_DOC);
+		Docteur doc = clinique.getDocteur(clavier.nextInt());
+		
+		return doc;
+		
+	}
+	
+	/**
+	 * Affiche la liste des infirmiers de la Clinique, et demande
+	 * à l'utilisateur d'écrire le chiffre de l'infirmier voulu.
+	 *
+	 * On utilise le sous-programme retournerListe() pour afficher
+	 * notre liste des infirmiers.
+	 * 
+	 * @return Infirmier inf.
+	 */
+	private static Infirmier infChoisi(Clinique clinique, Scanner clavier) {
+		
+		// Solicite le numéro de l'infirmier voulu et le retourne.
+		retournerListe(Constantes.RECHERCHE_INF, clinique);
+		System.out.print(Constantes.MSG_CHOIX_INF);
+		Infirmier inf = clinique.getInfirmier(clavier.nextInt());
+		
+		return inf;
+		
+	}
+	
+	/**
+	 * Affiche la liste des patients de la Clinique, et demande
+	 * à l'utilisateur d'écrire le chiffre du patient voulu.
+	 *
+	 * On utilise le sous-programme retournerListe() pour afficher
+	 * notre liste des patients.
+	 * 
+	 * @return Patient pat.
+	 */
+	private static Patient patChoisi(Clinique clinique, Scanner clavier) {
+		
+		// Solicite le numéro du patient voulu et le retourne.
+		retournerListe(Constantes.RECHERCHE_PAT, clinique);
+		System.out.print(Constantes.MSG_CHOIX_PAT);
+		Patient pat = clinique.getPatient(clavier.nextInt());
+		  
+		return pat;
+		
 	}
 	
 	/**
@@ -283,11 +355,11 @@ public class ProgrammePrincipal {
 
 	/**
 	 * Retourne une chaîne contenant les informations d'une liste selon.
-	 * le paramètre passé, qui est soit une liste de docteurs, une liste
-	 * d'infirmiers ou bien celle des patients de la clinique.
+	 * le paramètre recherche passé, qui est soit une liste de docteurs, 
+	 * une liste d'infirmiers ou bien celle des patients de la clinique.
 	 * 
 	 * On parcourt la liste jusqu'à ce qu'on trouve un élément qui vaut
-	 * null, alors on retourne notre liste.
+	 * null, alors on retourne notre liste sous forme de string.
 	 * 
 	 * @return String phrase.
 	 */
@@ -302,7 +374,7 @@ public class ProgrammePrincipal {
 			
 		    do {
 				
-		    	phrase += i + " - " + clinique.getDocteur(i).toString() +
+		    	phrase += i + " - " + clinique.getDocteur(i) +
 		    				Constantes.SAUTE_LIGNE; 
 		    	i++;
 		    	
@@ -318,7 +390,7 @@ public class ProgrammePrincipal {
 			
 		    do {
 				
-		    	phrase += i + " - " + clinique.getInfirmier(i).toString() + 
+		    	phrase += i + " - " + clinique.getInfirmier(i) + 
 		    				Constantes.SAUTE_LIGNE; 
 		    	i++;
 		    	
@@ -334,7 +406,7 @@ public class ProgrammePrincipal {
 			
 		    do {
 				
-		    	phrase += i + " - " + clinique.getPatient(i).toString() + 
+		    	phrase += i + " - " + clinique.getPatient(i) + 
 		    				Constantes.SAUTE_LIGNE; 
 		    	i++;
 		    	
