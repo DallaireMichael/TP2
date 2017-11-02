@@ -191,7 +191,8 @@ public class ProgrammePrincipal {
 						  
 						  // On trouve un rendez-vous disponible pour
 						  // le patient reçu.
-						  clinique.rendezVousPatient(patTemp);
+						  System.out.print(clinique.rendezVousPatient(
+								  					patTemp).toString());
 						  
 						  // On remet le menu après l'opération
 					      choix = 0;
@@ -266,6 +267,7 @@ public class ProgrammePrincipal {
 						  rdvTemp = new RendezVous(patTemp, docTemp, infTemp);
 						  System.out.println(
 								  calTemp.annulerRendezVous(rdvTemp));
+						  choix = 0;
 						  break;
 						  
 				case 14 : // Demande pour quitter l'application,
@@ -274,8 +276,9 @@ public class ProgrammePrincipal {
 						  System.out.println(Constantes.MSG_AVANT_FIN);
 						  String reponse = clavier.next();
 						  
-						  // Vérifie la réponse donnée.
-						  if(reponse == Constantes.PEUT_QUITTER) {
+						  // Vérifie la réponse donnée, on quitte 
+						  // si c'est oui.
+						  if(reponse.equals(Constantes.PEUT_QUITTER)) {
 							  
 							  quitter = true;
 							  

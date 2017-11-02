@@ -152,13 +152,7 @@ public class Constantes {
     "\nEntrez les minutes du rendez-vous.";
     
     public static final String MSG_SOL_NAM_PAT =
-    "\nEntrez le numréo d'assurance maladie d'un patient";
-    
-    public static final String MSG_DANS_LISTE =
-    " inscrit à la clinique";
-    
-    public static final String MSG_TAPEZ_UNE_TOUCHE =
-    "\nTapez 'enter' pour enregistrer votre réponse.";
+    "\nEntrez le numéro d'assurance maladie d'un patient";
     
     public static final String MSG_AVANT_FIN =
     "\nTapez 'Oui' si vous voulez vraiment quitter, " +
