@@ -47,6 +47,9 @@ public class Constantes {
     public static final String RECHERCHE_PAT = 
     "******* La liste des Patients *******";
     
+    // Pour vérifier la réponse donné pour quitter.
+    public static final String PEUT_QUITTER = "Oui";
+    
     // Les messages à afficher sur l'écran.
     public static final String LIGNE_ENTETE =
     "\n**********************************************************************";
@@ -161,7 +164,7 @@ public class Constantes {
     "\nTapez 'Oui' si vous voulez vraiment quitter, " +
     "\nsinon tapez 'Non' pour retourner au menu";
     
-    public static final String MSG_FIN = 
-    "\nMerci et à la prochaine...\n";
+    public static final String MSG_AUCUN_RDV = 
+    "\nIl n'y a aucun rendez-vous.";
 
 }

@@ -275,7 +275,7 @@ public class ProgrammePrincipal {
 						  String reponse = clavier.next();
 						  
 						  // Vérifie la réponse donnée.
-						  if(reponse == "Oui") {
+						  if(reponse == Constantes.PEUT_QUITTER) {
 							  
 							  quitter = true;
 							  
@@ -329,7 +329,7 @@ public class ProgrammePrincipal {
   
 		else {
 		  
-			System.out.println("Il n'y a aucun rendez-vous");
+			System.out.print(Constantes.MSG_AUCUN_RDV);
 		  
 		}
 	
