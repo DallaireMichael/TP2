@@ -50,6 +50,8 @@ public class ProgrammePrincipal {
 			Patient patTemp;
 			Infirmier infTemp;
 			Date dateTemp;
+			Calendrier cal = new Calendrier();
+			RendezVous ren;
 			
 			// Création d'une classe Clinique avec une nouvelle
 			// ou l'ancienne sauvergarde.
@@ -110,7 +112,8 @@ public class ProgrammePrincipal {
 					      clinique.ajouterDocteur(new Docteur(
 					    		new Identification(nom, prenom),
 					    		entier));
-
+					      
+					      
 					  	  // On remet le menu après l'opération
 					      choix = 0;
 					      break;
@@ -126,9 +129,9 @@ public class ProgrammePrincipal {
 					      
 					      // On enregistre l'infirmier dans la liste 
 					      // des infirmiers en étant disponible.
-					  	  clinique.ajouterInfirmier(new Infirmier(
-					      		new Identification(nom, prenom), 
-					      		Constantes.DISPONIBLE));
+					  	  System.out.print(clinique.ajouterInfirmier(new Infirmier(
+						      		new Identification(nom, prenom), 
+						      		Constantes.DISPONIBLE)));
 					      
 					      // On remet le menu après l'opération
 					      choix = 0;
@@ -192,15 +195,110 @@ public class ProgrammePrincipal {
 					      choix = 0;
 						  break;
 						  
-				case 6 :  break;
-				case 7 :  break;
-				case 8 :  break;
-				case 9 :  break;
-				case 10 :  break;
-				case 11 :  break;
-				case 12 :  break;
-				case 13 :  break;
-				case 14 :  break;
+				case 6 :  
+					
+					docTemp = docChoisi(clinique, clavier);
+					
+					ren = cal.obtenirProchainRendezVousDocteur(docTemp);
+					
+					//Test s'il y a un rendez-vous
+					if(ren != null) {
+						System.out.println(ren.toString());
+					}else {
+						System.out.println("Il n'y a aucun rendez-vous");
+					}
+					
+					choix = 0;
+					
+					break;
+				case 7 :  
+					
+					infTemp = infChoisi(clinique, clavier);
+					
+					ren = cal.obtenirProchainRendezVousInfirmier(infTemp);
+					
+					//Test s'il y a un rendez-vous
+					if(ren != null) {
+						System.out.println(ren.toString());
+					}else {
+						System.out.println("Il n'y a aucun rendez-vous");
+					}
+					
+					choix = 0;
+					
+					break;
+					
+				case 8 : 
+					
+					patTemp = patChoisi(clinique, clavier);
+					
+					ren = cal.obtenirProchainRendezVousPatient(patTemp);
+					
+					//Test s'il y a un rendez-vous
+					if(ren != null) {
+						System.out.println(ren.toString());
+					}else {
+						System.out.println("Il n'y a aucun rendez-vous");
+					}
+					
+					break;
+					
+				case 9 : 
+
+					System.out.println(cal.obtenirProchainePlageHoraire().toString());
+					
+					choix = 0;
+					
+					break;
+				case 10 : 
+					
+					System.out.println(cal.toString());
+					
+					choix = 0;
+					
+					break;
+				case 11 : 
+					
+					docTemp = docChoisi(clinique, clavier);
+					
+					System.out.println(cal.obtenirCalendrierDocteur(docTemp).toString());
+					
+					choix = 0;
+					
+					break;
+				case 12 : 
+					
+					infTemp = infChoisi(clinique, clavier);
+					
+					System.out.println(cal.obtenirCalendrierInfirmier(infTemp).toString());
+					
+					choix = 0;
+					
+					break;
+				case 13 : 
+					
+					docTemp = docChoisi(clinique, clavier);
+					infTemp = infChoisi(clinique, clavier);
+					patTemp = patChoisi(clinique, clavier);
+					
+					ren = new RendezVous(patTemp, docTemp, infTemp);
+					
+					System.out.println(cal.annulerRendezVous(ren));
+					
+					break;
+				case 14 : 
+					
+					System.out.println("Voulez-vous vraiment quitter le programme? oui ou non");
+					
+					String reponse = clavier.next();
+					
+					if(reponse == "oui") {
+						quitter = true;
+					}else {
+						choix = 0;
+					}
+					
+					break;
 				default : break;
 				
 				}
@@ -381,7 +479,7 @@ public class ProgrammePrincipal {
 		    }
 		    
 		    // Tant que le docteur n'est pas null on exécute la boucle.
-		    while (clinique.getDocteur(i) == null);
+		    while (clinique.getDocteur(i) != null);
 		    
 		}
 		
@@ -390,14 +488,14 @@ public class ProgrammePrincipal {
 			
 		    do {
 				
-		    	phrase += i + " - " + clinique.getInfirmier(i) + 
+		    	phrase += i + " - " + clinique.getInfirmier(i).toString() + 
 		    				Constantes.SAUTE_LIGNE; 
 		    	i++;
 		    	
 		    }
 		    
 		    // Tant que l'infirmier n'est pas null on exécute la boucle.
-		    while (clinique.getInfirmier(i) == null);
+		    while (clinique.getInfirmier(i) != null);
 		    
 		}
 		
@@ -406,17 +504,19 @@ public class ProgrammePrincipal {
 			
 		    do {
 				
-		    	phrase += i + " - " + clinique.getPatient(i) + 
+		    	phrase += i + " - " + clinique.getPatient(i).toString() + 
 		    				Constantes.SAUTE_LIGNE; 
 		    	i++;
 		    	
 		    }
 		    
 		    // Tant que le patient n'est pas null on exécute la boucle.
-		    while (clinique.getPatient(i) == null);
+		    while (clinique.getPatient(i) != null);
 		    
 		}
-	
+		
+		System.out.println(phrase);
+		
 	    return phrase;
 	}
 	
