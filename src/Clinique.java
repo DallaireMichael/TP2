@@ -18,13 +18,13 @@ public class Clinique implements Serializable {
 	private Calendrier calendrier;
 	
 	//Liste docteur de la clinique par liste doublement chaîné
-	private LinkedList<Docteur> listeDocteurs = new LinkedList<Docteur>();
+	private LinkedList<Participant> listeDocteurs = new LinkedList<Participant>();
 	
 	//Liste infirmiers de la clinique par liste doublement chaîné
-	private LinkedList<Infirmier> listeInfirmiers = new LinkedList<Infirmier>();
+	private LinkedList<Participant> listeInfirmiers = new LinkedList<Participant>();
 	
 	//Liste de patients de la clinique par liste Vecteur
-	private Vector<Patient> listePatients = new Vector<Patient>();
+	private Vector<Participant> listePatients = new Vector<Participant>();
 	
 	/*
 	 * ACCESSEURS
@@ -36,7 +36,7 @@ public class Clinique implements Serializable {
 	 * @param i
 	 * @return Docteur
 	 */
-	public Docteur getDocteur(int i) {
+	public Participant getDocteur(int i) {
 		
 		//Vérifie que l'indice ne vas pas plus loin que la grosseur de la liste
 		if(i < 0 || i >= listeDocteurs.size()) {
@@ -59,7 +59,7 @@ public class Clinique implements Serializable {
 	 * @param i
 	 * @return Infirmier
 	 */
-	public Infirmier getInfirmier(int i) {
+	public Participant getInfirmier(int i) {
 		
 		//Vérifie que l'indice ne vas pas plus loin que la grosseur de la liste
 		if(i < 0 || i >= listeInfirmiers.size()) {
@@ -82,7 +82,7 @@ public class Clinique implements Serializable {
 	 * @param i
 	 * @return Patient
 	 */
-	public Patient getPatient(int i) {
+	public Participant getPatient(int i) {
 		
 		//Vérifie que l'indice ne vas pas plus loin que la grosseur de la liste
 		if(i < 0 || i >= listePatients.size()) {
@@ -231,8 +231,8 @@ public class Clinique implements Serializable {
 					//Rendez-vous à ajouter pour le patient
 					RendezVous ren = 
 							new RendezVous(patient, 
-							this.getDocteur(j), 
-							this.getInfirmier(k));
+							(Docteur) this.getDocteur(j), 
+							(Infirmier) this.getInfirmier(k));
 					
 					//Ajoute un rendez-vous, s'il a bien été entré,
 					//On retourne le rendez-vous créer

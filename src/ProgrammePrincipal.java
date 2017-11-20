@@ -376,7 +376,7 @@ public class ProgrammePrincipal {
 		// Solicite le numéro du docteur voulu et retourne le docteur voulu.
 		System.out.print(retournerListe(Constantes.RECHERCHE_DOC, clinique));
 		System.out.print(Constantes.MSG_CHOIX_DOC);
-		Docteur doc = clinique.getDocteur(clavier.nextInt());
+		Docteur doc = (Docteur) clinique.getDocteur(clavier.nextInt());
 		
 		return doc;
 		
@@ -396,7 +396,7 @@ public class ProgrammePrincipal {
 		// Solicite le numéro de l'infirmier voulu et le retourne.
 		System.out.print(retournerListe(Constantes.RECHERCHE_INF, clinique));
 		System.out.print(Constantes.MSG_CHOIX_INF);
-		Infirmier inf = clinique.getInfirmier(clavier.nextInt());
+		Infirmier inf = (Infirmier) clinique.getInfirmier(clavier.nextInt());
 		
 		return inf;
 		
@@ -416,7 +416,7 @@ public class ProgrammePrincipal {
 		// Solicite le numéro du patient voulu et le retourne.
 		System.out.print(retournerListe(Constantes.RECHERCHE_PAT, clinique));
 		System.out.print(Constantes.MSG_CHOIX_PAT);
-		Patient pat = clinique.getPatient(clavier.nextInt());
+		Patient pat = (Patient) clinique.getPatient(clavier.nextInt());
 		  
 		return pat;
 		

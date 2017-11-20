@@ -110,7 +110,7 @@ public class Docteur extends Participant implements Serializable{
 	 */
 	public String getCategorieParticipant() {
 		
-		return "Docteur";
+		return Constantes.MSG_GET_CATEGORIE_DOCTEUR;
 		
 	}
 }

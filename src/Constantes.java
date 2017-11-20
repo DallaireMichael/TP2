@@ -167,4 +167,12 @@ public class Constantes {
     public static final String MSG_AUCUN_RDV = 
     "\nIl n'y a aucun rendez-vous.";
 
+	public static final String MSG_GET_CATEGORIE_PARTICIPANT = "Participant";
+
+	public static final String MSG_GET_CATEGORIE_DOCTEUR = "Docteur";
+
+	public static final String MSG_GET_CATEGORIE_INFIRMIER = "Infirmier";
+
+	public static final String MSG_GET_CATEGORIE_PATIENT = "Patient";
+
 }
