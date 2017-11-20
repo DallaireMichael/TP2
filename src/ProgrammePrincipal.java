@@ -45,17 +45,19 @@ public class ProgrammePrincipal {
 			String nom = "";
 			String prenom = "";
 			
+			// Création d'une classe Clinique avec une nouvelle
+			// ou l'ancienne sauvergarde.
+			Clinique clinique = verificationAncienneSauvegarde();
+			
 			// Classes utilisées temporairement.
 			Docteur docTemp;
 			Patient patTemp;
 			Infirmier infTemp;
 			Date dateTemp;
-			Calendrier cal = new Calendrier();
-			RendezVous ren;
+			RendezVous rdvTemp;
+			Calendrier calTemp = clinique.getCalendrier();
 			
-			// Création d'une classe Clinique avec une nouvelle
-			// ou l'ancienne sauvergarde.
-			Clinique clinique = verificationAncienneSauvegarde();
+			
 			
 			/**********************************
 		     * * Début de la boucle principale.
@@ -92,6 +94,7 @@ public class ProgrammePrincipal {
 						  
 						  // On change la valeur de l'option.
 						  choix = clavier.nextInt();
+						  
 						  break;
 						  
 				case 1 :  // Affiche l'interface d'ajout d'un docteur.
@@ -109,11 +112,10 @@ public class ProgrammePrincipal {
 					  	
 					  	  // On enregistre le docteur dans la 
 					  	  // liste des docteurs.
-					      clinique.ajouterDocteur(new Docteur(
-					    		new Identification(nom, prenom),
-					    		entier));
-					      
-					      
+					      System.out.print(clinique.ajouterDocteur(
+					    		  new Docteur(new Identification(nom, prenom), 
+					    				  		entier)));
+
 					  	  // On remet le menu après l'opération
 					      choix = 0;
 					      break;
@@ -129,9 +131,9 @@ public class ProgrammePrincipal {
 					      
 					      // On enregistre l'infirmier dans la liste 
 					      // des infirmiers en étant disponible.
-					  	  System.out.print(clinique.ajouterInfirmier(new Infirmier(
-						      		new Identification(nom, prenom), 
-						      		Constantes.DISPONIBLE)));
+					  	  System.out.println(clinique.ajouterInfirmier(
+					  			new Infirmier(new Identification(nom, prenom), 
+					      		Constantes.DISPONIBLE)));
 					      
 					      // On remet le menu après l'opération
 					      choix = 0;
@@ -152,9 +154,9 @@ public class ProgrammePrincipal {
 					  	  entier = clavier.nextInt();
 					  	  
 				      	  // On enregistre le patient à la liste des patients.
-				      	  clinique.ajouterPatient(new Patient( 
-				      			  new Identification(nom, prenom), entier));
-				      	System.out.print(clinique.getPatient(0));
+				      	  System.out.println(clinique.ajouterPatient(new Patient( 
+				      			  new Identification(nom, prenom), entier)));
+
 					  	  // On remet le menu après l'opération
 					      choix = 0;
 				      	  break;
@@ -173,10 +175,10 @@ public class ProgrammePrincipal {
 						  // Fait référence au calendrier de la clinique et
 						  // crée un nouveau rendez-vous avec
 						  // nos informations reçues.
-						  clinique.getCalendrier().ajouterRendezVous(
-								  		new RendezVous(patTemp, docTemp, infTemp),
-								  		dateTemp);
-						  System.out.print(clinique.getCalendrier());
+						  System.out.println(clinique.getCalendrier().
+								  ajouterRendezVous(new RendezVous(patTemp,
+										  docTemp, infTemp), dateTemp));
+
 					  	  // On remet le menu après l'opération
 					      choix = 0;
 				      	  break;
@@ -195,115 +197,105 @@ public class ProgrammePrincipal {
 					      choix = 0;
 						  break;
 						  
-				case 6 :  
-					
-					docTemp = docChoisi(clinique, clavier);
-					
-					ren = cal.obtenirProchainRendezVousDocteur(docTemp);
-					
-					//Test s'il y a un rendez-vous
-					if(ren != null) {
-						System.out.println(ren.toString());
-					}else {
-						System.out.println("Il n'y a aucun rendez-vous");
-					}
-					
-					choix = 0;
-					
-					break;
-				case 7 :  
-					
-					infTemp = infChoisi(clinique, clavier);
-					
-					ren = cal.obtenirProchainRendezVousInfirmier(infTemp);
-					
-					//Test s'il y a un rendez-vous
-					if(ren != null) {
-						System.out.println(ren.toString());
-					}else {
-						System.out.println("Il n'y a aucun rendez-vous");
-					}
-					
-					choix = 0;
-					
-					break;
-					
-				case 8 : 
-					
-					patTemp = patChoisi(clinique, clavier);
-					
-					ren = cal.obtenirProchainRendezVousPatient(patTemp);
-					
-					//Test s'il y a un rendez-vous
-					if(ren != null) {
-						System.out.println(ren.toString());
-					}else {
-						System.out.println("Il n'y a aucun rendez-vous");
-					}
-					
-					break;
-					
-				case 9 : 
-
-					System.out.println(cal.obtenirProchainePlageHoraire().toString());
-					
-					choix = 0;
-					
-					break;
-				case 10 : 
-					
-					System.out.println(cal.toString());
-					
-					choix = 0;
-					
-					break;
-				case 11 : 
-					
-					docTemp = docChoisi(clinique, clavier);
-					
-					System.out.println(cal.obtenirCalendrierDocteur(docTemp).toString());
-					
-					choix = 0;
-					
-					break;
-				case 12 : 
-					
-					infTemp = infChoisi(clinique, clavier);
-					
-					System.out.println(cal.obtenirCalendrierInfirmier(infTemp).toString());
-					
-					choix = 0;
-					
-					break;
-				case 13 : 
-					
-					docTemp = docChoisi(clinique, clavier);
-					infTemp = infChoisi(clinique, clavier);
-					patTemp = patChoisi(clinique, clavier);
-					
-					ren = new RendezVous(patTemp, docTemp, infTemp);
-					
-					System.out.println(cal.annulerRendezVous(ren));
-					
-					break;
-				case 14 : 
-					
-					System.out.println("Voulez-vous vraiment quitter le programme? oui ou non");
-					
-					String reponse = clavier.next();
-					
-					if(reponse == "oui") {
-						quitter = true;
-					}else {
-						choix = 0;
-					}
-					
-					break;
+				case 6 :  // Afficher prochain rendez-vous d'un docteur. 
+						  docTemp = docChoisi(clinique, clavier);
+						  rdvTemp = calTemp.obtenirProchainRendezVousDocteur(
+								  			docTemp);
+						  
+						  // Test le rendez-vous et affiche le message.
+						  verifierRDV(rdvTemp);
+						  
+						  // Retourne au menu principal.
+						  choix = 0;
+						  break;
+						  
+				case 7 :  // Afficher prochain rendez-vous d'un infirmier. 
+						  infTemp = infChoisi(clinique, clavier);
+						  rdvTemp = calTemp.obtenirProchainRendezVousInfirmier(
+								  			infTemp);
+						  
+						  // Test le rendez-vous et affiche le message.
+						  verifierRDV(rdvTemp);
+						  
+						  choix = 0;
+						  break;
+						  
+				case 8 :  // Afficher prochain rendez-vous d'un patient. 
+						  patTemp = patChoisi(clinique, clavier);
+						  rdvTemp = calTemp.obtenirProchainRendezVousPatient(
+								  			patTemp);
+						  
+						  // Test le rendez-vous et affiche le message.
+					  	  verifierRDV(rdvTemp);
+					  	  
+					  	  choix = 0;
+					  	  break;
+					  	  
+				case 9 :  // Passer à la prochaine plage horaire. 
+						  System.out.println(
+						  calTemp.obtenirProchainePlageHoraire().toString());
+						  
+						  choix = 0;
+						  break;
+						  
+				case 10 : // Afficher calendrier au complet. 
+						  System.out.println(calTemp.toString());
+						  choix = 0;
+						  break;
+						  
+				case 11 : // Afficher calendrier au complet d'un docteur.
+						  docTemp = docChoisi(clinique, clavier);
+						  System.out.println(calTemp.obtenirCalendrierDocteur(
+								  docTemp).toString());
+						  
+						  choix = 0;
+						  break;
+						  
+				case 12 : // Afficher calendrier au complet d'un infirmier.
+						  infTemp = infChoisi(clinique, clavier);
+						  System.out.println(calTemp.
+							  obtenirCalendrierInfirmier(infTemp).toString());
+						  choix = 0;
+						  break;
+						  
+				case 13 : // Annuler un rendez-vous.
+						  docTemp = docChoisi(clinique, clavier);
+						  infTemp = infChoisi(clinique, clavier);
+						  patTemp = patChoisi(clinique, clavier);
+						  dateTemp = dateChoisie(clinique, clavier);
+						  rdvTemp = new RendezVous(patTemp, docTemp, infTemp);
+						  System.out.println(
+								  calTemp.annulerRendezVous(rdvTemp));
+						  break;
+						  
+				case 14 : // Demande pour quitter l'application,
+						  // et quitte ou non selon la réponse de 
+						  // l'utilisateur.
+						  System.out.println(Constantes.MSG_AVANT_FIN);
+						  String reponse = clavier.next();
+						  
+						  // Vérifie la réponse donnée.
+						  if(reponse == "Oui") {
+							  
+							  quitter = true;
+							  
+						  }
+						  
+						  else {
+							  
+							choix = 0;
+							
+						  }
+						  
+						  break;
+						  
 				default : break;
 				
 				}
 			
-				// Sauvegarderrrrrrrrrrr clinique !!!!
+				UtilitaireFichier.sauvegarderClinique(clinique,
+						Constantes.CHEMIN_FICHIER);
+				
 			}
 			
 		}
@@ -319,6 +311,29 @@ public class ProgrammePrincipal {
 	/**********************************
      * * Les sous-programmes.
      * *********************************/
+	
+	/**
+	 * Prend un rendez-vous et le vérifie. 
+	 * l'année, l'heure et les minutes pour un rendez-vous.
+	 * 
+	 * @return void.
+	 */
+	private static void verifierRDV(RendezVous rdv) {
+		
+		//Test s'il y a un rendez-vous
+		if(rdv != null) {
+	  
+			System.out.println(rdv.toString());
+	  
+		}
+  
+		else {
+		  
+			System.out.println("Il n'y a aucun rendez-vous");
+		  
+		}
+	
+	}
 	
 	/**
 	 * Demande une date contenant, le jour, le mois, 
@@ -359,7 +374,7 @@ public class ProgrammePrincipal {
 	private static Docteur docChoisi(Clinique clinique, Scanner clavier) {
 		
 		// Solicite le numéro du docteur voulu et retourne le docteur voulu.
-		retournerListe(Constantes.RECHERCHE_DOC, clinique);
+		System.out.print(retournerListe(Constantes.RECHERCHE_DOC, clinique));
 		System.out.print(Constantes.MSG_CHOIX_DOC);
 		Docteur doc = clinique.getDocteur(clavier.nextInt());
 		
@@ -379,7 +394,7 @@ public class ProgrammePrincipal {
 	private static Infirmier infChoisi(Clinique clinique, Scanner clavier) {
 		
 		// Solicite le numéro de l'infirmier voulu et le retourne.
-		retournerListe(Constantes.RECHERCHE_INF, clinique);
+		System.out.print(retournerListe(Constantes.RECHERCHE_INF, clinique));
 		System.out.print(Constantes.MSG_CHOIX_INF);
 		Infirmier inf = clinique.getInfirmier(clavier.nextInt());
 		
@@ -399,7 +414,7 @@ public class ProgrammePrincipal {
 	private static Patient patChoisi(Clinique clinique, Scanner clavier) {
 		
 		// Solicite le numéro du patient voulu et le retourne.
-		retournerListe(Constantes.RECHERCHE_PAT, clinique);
+		System.out.print(retournerListe(Constantes.RECHERCHE_PAT, clinique));
 		System.out.print(Constantes.MSG_CHOIX_PAT);
 		Patient pat = clinique.getPatient(clavier.nextInt());
 		  
@@ -429,6 +444,7 @@ public class ProgrammePrincipal {
 			
 			// On crée une nouvelle instance de la classe Clinique.
 			nouvelleVersionClinique = new Clinique();
+			nouvelleVersionClinique.setCalendrier(new Calendrier());
 			
 		}
 		
@@ -466,13 +482,13 @@ public class ProgrammePrincipal {
 		// Les variables.
 		String phrase = recherche + Constantes.SAUTE_LIGNE;
 		int i = 0;
-		
+
 		// Boucle qui parcourt toute la liste des docteurs de la clinique.
 		if(recherche == Constantes.RECHERCHE_DOC) {
-			
+
 		    do {
 				
-		    	phrase += i + " - " + clinique.getDocteur(i) +
+		    	phrase += i + " - " + clinique.getDocteur(i).toString() +
 		    				Constantes.SAUTE_LIGNE; 
 		    	i++;
 		    	
@@ -514,9 +530,7 @@ public class ProgrammePrincipal {
 		    while (clinique.getPatient(i) != null);
 		    
 		}
-		
-		System.out.println(phrase);
-		
+	
 	    return phrase;
 	}
 	

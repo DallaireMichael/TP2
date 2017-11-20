@@ -30,9 +30,7 @@ public class Test{
 		System.out.print("\n\nCalendrier: " + cal.toString());
 		
 		
-		Clinique clinique = new Clinique();
-		System.out.print(clinique.listePatients.add(new Patient(id,0)));
-		clinique.ajouterDocteur(new Docteur(id,0));
+		
 		//clinique.rendezVousPatient(patient);
 	
 	}

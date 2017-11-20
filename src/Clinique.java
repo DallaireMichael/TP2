@@ -39,7 +39,7 @@ public class Clinique implements Serializable {
 	public Docteur getDocteur(int i) {
 		
 		//Vérifie que l'indice ne vas pas plus loin que la grosseur de la liste
-		if(i < 0 || i >= listeInfirmiers.size()) {
+		if(i < 0 || i >= listeDocteurs.size()) {
 			
 			return null;
 			

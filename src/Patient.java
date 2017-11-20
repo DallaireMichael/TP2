@@ -10,10 +10,9 @@ import java.io.Serializable;
  * @version Niko Girardelli - A2017
  */
 
-public class Patient implements Serializable {
+public class Patient extends Participant implements Serializable {
 	
 	// Attributs pour la classe Patient
-	private Identification id;
 	private int numeroAssuranceSocial;
 	
 	/***************************
@@ -25,7 +24,6 @@ public class Patient implements Serializable {
 	 */
 	public Patient() {
 		
-		id = new Identification();
 		numeroAssuranceSocial = 0;
 		
 	}
@@ -41,7 +39,7 @@ public class Patient implements Serializable {
 	 */
 	public Patient(Identification id, int numeroAssuranceSocial) {
 		
-		this.id = id.clone();
+		super(id);
 		this.setNumeroAssuranceSocial(numeroAssuranceSocial);
 		
 	}
@@ -54,7 +52,9 @@ public class Patient implements Serializable {
 	 */
 	public Patient(Patient patientCopie) {
 		
-		this(patientCopie.id.clone(), patientCopie.getNumeroAssuranceSocial());
+		super(patientCopie.getIdentification());
+		
+		patientCopie.getNumeroAssuranceSocial();
 		
 	}
 	
@@ -73,16 +73,6 @@ public class Patient implements Serializable {
 		
 	}
 	
-	/**
-	 * Retourne la référence de l'indentifiant d'un patient.
-	 * 
-	 * @return Identifitcation id.
-	 */
-	public Identification getIdentification() {
-		
-		return id;
-		
-	}
 	
 	/***************************
      * * Les mutateurs.
@@ -103,20 +93,6 @@ public class Patient implements Serializable {
 		
 	}
 	
-	/**
-	 * Change la valeur de la référence de l'identifiant d'un patient.
-	 * 
-	 * @param id
-	 * 		  La classe Identification.
-	 * 
-	 * @return void.
-	 */
-	public void setIdentification(Identification id) {
-		
-		this.id = id;
-		
-	}
-	
 	/***************************
      * * Les comportements.
      * **************************/
@@ -128,7 +104,7 @@ public class Patient implements Serializable {
 	 */
 	public String toString() {
     	
-    	return "\nNom du patient : " + id.toString() +
+    	return "\nNom du patient : " + super.toString() +
     		   "\nNuméro d'assurance social : " +
     			this.getNumeroAssuranceSocial();
     
@@ -144,7 +120,7 @@ public class Patient implements Serializable {
 	 */
 	public boolean equals(Patient patientComparaison) {
     	
-    	return this.id.equals(patientComparaison.getIdentification()) &&
+    	return super.equals(patientComparaison.getIdentification()) &&
     		   this.getNumeroAssuranceSocial() == 
     		   patientComparaison.getNumeroAssuranceSocial(); 
     
@@ -161,5 +137,15 @@ public class Patient implements Serializable {
     					   this.getNumeroAssuranceSocial());
     
     }
+	
+	/**
+	 * Retourne une chaîne de caractères qui définie
+	 * qu'est-ce que l'objet
+	 */
+	public String getCategorieParticipant() {
+		
+		return "Docteur";
+		
+	}
 	
 }
