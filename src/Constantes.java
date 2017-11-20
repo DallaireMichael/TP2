@@ -160,5 +160,8 @@ public class Constantes {
     
     public static final String MSG_AUCUN_RDV = 
     "\nIl n'y a aucun rendez-vous.";
+    
+    public static final String MSG_GET_CATEGORIE_PARTICIPANT =
+    "\nParticipant";
 
 }

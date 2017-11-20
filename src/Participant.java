@@ -1,7 +1,8 @@
 import java.io.Serializable;
 
 /**
- * Contient un attribut de type Identification.
+ * Contient un attribut de type Identification et sera parent dans
+ * diverses classes enfants dont Infirmier, Patient et Docteur.
  * @author Niko Girardelli
  * @version 1.0
  */
