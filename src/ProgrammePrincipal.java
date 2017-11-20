@@ -15,9 +15,9 @@ import java.util.Scanner;
  * La boucle principale exécute le programme tant que l'usager n'as pas 
  * fermer le programme avec l'option de quitter. 
  * 
- * @author Niko Girardelli
- * @since (copyright) Niko Girardelli - A2017
- * @version Niko Girardelli - A2017
+ * @author Niko Girardelli et Michaël Dallaire
+ * @since (copyright) Niko Girardelli et Michaël Dallaire - A2017
+ * @version Niko Girardelli et Michaël Dallaire - A2017
  */
 public class ProgrammePrincipal {
 	
@@ -248,7 +248,6 @@ public class ProgrammePrincipal {
 						  docTemp = docChoisi(clinique, clavier);
 						  System.out.println(calTemp.obtenirCalendrierDocteur(
 								  docTemp).toString());
-						  
 						  choix = 0;
 						  break;
 						  
