@@ -2,7 +2,7 @@
 /**
  * Classe contenant toutes les constantes nécessaires au programme.
  * 
- * @author Niko Girardelli et Michaël Dallaire
+ * @author Niko Girardelli et Michaél Dallaire
  * @version (Copyright A2017)
  */
 public class Constantes {
@@ -47,7 +47,10 @@ public class Constantes {
     public static final String RECHERCHE_PAT = 
     "******* La liste des Patients *******";
     
-    // Les messages à afficher sur l'écran.
+    // Pour vérifier la réponse donné pour quitter.
+    public static final String PEUT_QUITTER = "Oui";
+    
+    // Les messages é afficher sur l'écran.
     public static final String LIGNE_ENTETE =
     "\n**********************************************************************";
     
@@ -58,7 +61,7 @@ public class Constantes {
     "\nEntrez le chiffre de l'option que vous désirez utilliser";
     
     public static final String MSG_BIENVENUE =
-    "\nBienvenue à la clinique \nQue voulez-vous faire ?";
+    "\nBienvenue é la clinique \nQue voulez-vous faire ?";
     
     public static final String MSG_OPTION_01 =
     "\n1 - Ajouter un docteur";
@@ -85,7 +88,7 @@ public class Constantes {
     "\n8 - Afficher le prochain rendez-vous d'un patient";
     
     public static final String MSG_OPTION_09 =
-    "\n9 - Passer à la prochaine plage horaire";
+    "\n9 - Passer é la prochaine plage horaire";
     
     public static final String MSG_OPTION_10 =
     "\n10 - Afficher le calendrier complet";
@@ -146,13 +149,13 @@ public class Constantes {
     "\nEntrez l'heure du rendez-vous.";
     
     public static final String MSG_SOL_MINUTE =
-    "\nEntrez le jour du rendez-vous.";
+    "\nEntrez les minutes du rendez-vous.";
     
     public static final String MSG_SOL_NAM_PAT =
-    "\nEntrez le numréo d'assurance maladie d'un patient";
+    "\nEntrez le numéro d'assurance maladie d'un patient";
     
     public static final String MSG_DANS_LISTE =
-    " inscrit à la clinique";
+    " inscrit é la clinique";
     
     public static final String MSG_TAPEZ_UNE_TOUCHE =
     "\nTapez 'enter' pour enregistrer votre réponse.";
@@ -161,7 +164,7 @@ public class Constantes {
     "\nTapez 'Oui' si vous voulez vraiment quitter, " +
     "\nsinon tapez 'Non' pour retourner au menu";
     
-    public static final String MSG_FIN = 
-    "\nMerci et à la prochaine...\n";
+    public static final String MSG_AUCUN_RDV = 
+    "\nIl n'y a aucun rendez-vous.";
 
 }
