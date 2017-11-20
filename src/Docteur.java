@@ -7,14 +7,11 @@ import java.io.Serializable;
  * @author Michaël Dallaire
  * @version 1.0
  */
-public class Docteur implements Serializable{
+public class Docteur extends Participant implements Serializable{
 	
 	/*
 	 * ATTRIBUTS
 	 */
-	
-	//L'instance d'identification
-	private Identification id;
 	
 	//Le numéro du département
 	private int departement;
@@ -28,7 +25,6 @@ public class Docteur implements Serializable{
 	 */
 	public Docteur(){
 		
-		id = new Identification();
 		departement = 0;
 		
 	}
@@ -41,7 +37,7 @@ public class Docteur implements Serializable{
 	 */
 	public Docteur(Identification id, int departement){
 		
-		this.id = id.clone();
+		super(id);
 		this.departement = departement;
 		
 	}
@@ -52,21 +48,13 @@ public class Docteur implements Serializable{
 	 */
 	public Docteur(Docteur doc){
 		
-		id = doc.id.clone();
+		super(doc.getIdentification());
 		departement = doc.departement;
 	}
 	
 	/*
 	 * MUTATEURS
 	 */
-	
-	/**
-	 * Mute l'identification du docteur 
-	 * @param id
-	 */
-	public void setId(Identification id){
-		this.id = id.clone();
-	}
 	
 	/**
 	 * Mute departement
@@ -79,14 +67,6 @@ public class Docteur implements Serializable{
 	/*
 	 * ACCESSEURS 
 	 */
-	
-	/**
-	 * Retourne son identification
-	 * @return id
-	 */
-	public Identification getId(){
-		return id;
-	}
 	
 	/**
 	 * Retourne son departement
@@ -102,7 +82,7 @@ public class Docteur implements Serializable{
 	 * @return boolean
 	 */
 	public boolean equals(Docteur doc){
-		return this.id.equals(doc.id) && 
+		return super.equals(doc.getIdentification()) && 
 				departement == doc.departement;
 	}
 	
@@ -113,7 +93,7 @@ public class Docteur implements Serializable{
 	 * @return Docteur
 	 */
 	public Docteur clone(){
-		return new Docteur(id.clone(),departement);
+		return new Docteur(super.getIdentification().clone(),departement);
 	}
 	
 	/**
@@ -121,6 +101,16 @@ public class Docteur implements Serializable{
 	 * @return String
 	 */
 	public String toString(){
-		return id.toString()+" "+departement ;
+		return super.toString()+" "+departement ;
+	}
+	
+	/**
+	 * Retourne une chaîne de caractères qui définie
+	 * qu'est-ce que l'objet
+	 */
+	public String getCategorieParticipant() {
+		
+		return "Docteur";
+		
 	}
 }

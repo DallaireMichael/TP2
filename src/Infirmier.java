@@ -10,10 +10,8 @@ import java.io.Serializable;
  * @version Niko Girardelli - A2017
  */
 
-public class Infirmier implements Serializable {
+public class Infirmier extends Participant implements Serializable {
 	
-	// Attributs pour la classe Infirmier
-	private Identification id;
 	private boolean disponible;
 	
 	/***************************
@@ -25,7 +23,6 @@ public class Infirmier implements Serializable {
 	 */
 	public Infirmier() {
 		
-		this.id = new Identification();
 		this.disponible = false;
 		
 	}
@@ -40,7 +37,7 @@ public class Infirmier implements Serializable {
 	 */
 	public Infirmier(Identification id, boolean disponible) {
 		
-		this.id = id.clone();
+		super(id.clone());
 		this.setDisponibilite(disponible);
 		
 	}
@@ -53,7 +50,9 @@ public class Infirmier implements Serializable {
 	 */
 	public Infirmier(Infirmier infirmierCopie) {
 		
-		this(infirmierCopie.id.clone(), infirmierCopie.getDisponibilite());
+		super(infirmierCopie.getIdentification());
+		
+		this.disponible = infirmierCopie.getDisponibilite();
 		
 	}
 	
@@ -72,16 +71,6 @@ public class Infirmier implements Serializable {
 		
 	}
 	
-	/**
-	 * Retourne la référence de l'indentifiant d'un infirmier.
-	 * 
-	 * @return Identifitcation id.
-	 */
-	public Identification getIdentification() {
-		
-		return id;
-		
-	}
 	
 	/***************************
      * * Les mutateurs.
@@ -101,19 +90,6 @@ public class Infirmier implements Serializable {
 		
 	}
 	
-	/**
-	 * Change la valeur de la référence de l'identifiant d'un l'infirmier.
-	 * 
-	 * @param id
-	 * 		  La classe Identification.
-	 * 
-	 * @return void.
-	 */
-	public void setIdentification(Identification id) {
-		
-		this.id = id;
-		
-	}
 	
 	/***************************
      * * Les comportements.
@@ -126,7 +102,7 @@ public class Infirmier implements Serializable {
 	 */
 	public String toString() {
     	
-    	return "\nNom de l'infirmier : " + id.toString() + "\nDisponible : " +
+    	return "\nNom de l'infirmier : " + super.toString() + "\nDisponible : " +
     			this.getDisponibilite();
     	
     }
@@ -141,7 +117,7 @@ public class Infirmier implements Serializable {
 	 */
 	public boolean equals(Infirmier infirmerComparaison) {
     	
-    	return this.id.equals(infirmerComparaison.getIdentification()) &&
+    	return super.equals(infirmerComparaison.getIdentification()) &&
     		   this.getDisponibilite() == 
     		   infirmerComparaison.getDisponibilite(); 
     
@@ -154,8 +130,18 @@ public class Infirmier implements Serializable {
 	 */
 	public Infirmier clone() {
     	
-    	return new Infirmier(this.getIdentification(),this.getDisponibilite());
+    	return new Infirmier(super.getIdentification(),this.getDisponibilite());
     
     }
+	
+	/**
+	 * Retourne une chaîne de caractères qui définie
+	 * qu'est-ce que l'objet
+	 */
+	public String getCategorieParticipant() {
+		
+		return "Infirmier";
+		
+	}
 	
 }
